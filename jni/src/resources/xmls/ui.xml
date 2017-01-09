@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <set path="images/ui" />
+    <atlas>
+        <image id="ui-empty" file="empty.png" />
+        <image id="ui-alt_sword" file="alt_sword.png" />
+        <image id="ui-raw_sword" file="raw_sword.png" />
+
+        <image id="ui-equipslot" file="equipslot.png" />
+
+        <image id="ui-joystick" file="joystick.png" />
+        <image id="ui-finger" file="finger.png" />
+    </atlas>
+</resources>

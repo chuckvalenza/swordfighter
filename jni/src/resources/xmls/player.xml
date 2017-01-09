@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <set path="images/player" />
+    <atlas>
+        <image id="player" file="base_player.png" cols="5" />
+
+        <image id="player-raw_sword" file="raw_sword.png" cols="5" />
+        <image id="player-alt_sword" file="alt_sword.png" cols="5" />
+        <image id="player-empty" file="empty.png" cols="5" />
+    </atlas>
+</resources>
