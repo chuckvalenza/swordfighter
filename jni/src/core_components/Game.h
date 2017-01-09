@@ -10,7 +10,7 @@
 
 #include "oxygine-framework.h"
 
-#include "ui_components/UI.h"
+#include "ui_components/HUD.h"
 #include "core_components/Screen.h"
 
 using namespace oxygine;
@@ -20,12 +20,12 @@ DECLARE_SMART(Unit, spUnit);
 
 class Game : public Actor {
 	private:
-		UI* ui;
+		HUD* ui;
 		Screen* screen;
 
 		void createWorld();
 		void createPlayer();
-		void createUI();
+		void createHUD();
 	protected:
 		void doUpdate(const UpdateState& us);
 	public:

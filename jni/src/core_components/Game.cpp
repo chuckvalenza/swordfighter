@@ -24,12 +24,12 @@ void Game::createPlayer()
 	//player->init(this); // attach view to game actor
 }
 
-void Game::createUI()
+void Game::createHUD()
 {
 //////////////
 	spUnit player = new Unit;
 //////////////
-	ui = new UI;
+	ui = new HUD;
 	ui->setScreen(screen);
 	ui->init(this, player);
 }
@@ -43,7 +43,7 @@ void Game::init()
 
 	createWorld();
 	createPlayer();
-	createUI();
+	createHUD();
 }
 
 void Game::doUpdate(const UpdateState& us)
