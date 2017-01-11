@@ -92,12 +92,14 @@ void HUD::setScreen(Screen* s)
 
 void HUD::setScale(float scale)
 {
+/*
 	left_joy->setScale(scale);
 	right_joy->setScale(scale);
 	quick_slot1->setScale(scale);
 	quick_slot2->setScale(scale);
 	quick_slot3->setScale(scale);
 	quick_slot4->setScale(scale);
+*/
 }
 
 /**

@@ -32,7 +32,7 @@ class HUD : public DrawableObj {
 		HUD();
 		void setScreen(Screen*);
 		void init(spActor, spUnit);
-		void setScale(float)
+		void setScale(float);
 		void update(const UpdateState&);
 };
 
