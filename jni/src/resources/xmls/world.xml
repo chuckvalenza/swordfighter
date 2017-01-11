@@ -2,7 +2,8 @@
 <resources>
     <set path="images/world" />
     <atlas>
-        <image id="world-ground" file="ground.png" />
+        <image id="world-grass" file="grass.png" />
+        <image id="world-dirt" file="dirt.png" />
         <image id="world-raw_sword" file="raw_sword.png" />
     </atlas>
 </resources>

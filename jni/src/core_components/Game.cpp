@@ -15,6 +15,8 @@ Game::Game()
 
 void Game::createWorld()
 {
+	world = new World;
+	world->init(this);
 }
 
 void Game::createPlayer()
@@ -40,6 +42,8 @@ void Game::init()
 
 	screen = new Screen;
 	screen->init(getWidth(), getHeight());
+
+	//setScale(0.75);
 
 	createWorld();
 	createPlayer();
