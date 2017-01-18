@@ -13,13 +13,16 @@
 
 using namespace oxygine;
 
-class DrawableObj : public Object {
+class DrawableObj : virtual public Object {
 	protected:
 		spSprite view;
 	public:
 		DrawableObj();
+		void setRotation(float);
+		void setPosition(Vector2);
 		void setX(float);
 		void setY(float);
+		Vector2 getPosition();
 		void setWidth(float);
 		void setHeight(float);
 		float getWidth();

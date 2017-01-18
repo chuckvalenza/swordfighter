@@ -13,6 +13,21 @@ DrawableObj::DrawableObj()
 
 }
 
+void DrawableObj::setRotation(float x)
+{
+	view->setRotation(x);
+}
+
+void DrawableObj::setPosition(Vector2 v)
+{
+	view->setPosition(v);
+}
+
+Vector2 DrawableObj::getPosition()
+{
+	return view->getPosition();
+}
+
 void DrawableObj::setX(float x)
 {
 	view->setX(x);
