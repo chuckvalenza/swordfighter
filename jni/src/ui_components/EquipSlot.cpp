@@ -13,7 +13,6 @@ EquipSlot::EquipSlot()
 
 	equip_slot = new Sprite;
 	equip_slot->setResAnim(res::r.getResAnim("ui-equipslot"));
-	//item_sprite->setResAnim(res::r.getResAnim("ui-raw_sword"));
 	//equip_slot->setAnchor(0.0f, 0.5f);
 	equip_slot->attachTo(view);
 	equip_slot->addEventListener(TouchEvent::TOUCH_DOWN, CLOSURE(this, &EquipSlot::onEvent));
