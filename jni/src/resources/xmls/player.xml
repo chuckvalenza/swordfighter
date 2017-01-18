@@ -2,10 +2,14 @@
 <resources>
     <set path="images/player" />
     <atlas>
-        <image id="player" file="base_player.png" cols="5" />
+        <image id="player-empty-torso" file="/torso/empty.png" cols="5" />
 
-        <image id="player-raw_sword" file="raw_sword.png" cols="5" />
-        <image id="player-alt_sword" file="alt_sword.png" cols="5" />
-        <image id="player-empty" file="empty.png" cols="5" />
+        <image id="player-raw_sword-rh" file="/right_hand/raw_sword.png" cols="5" />
+        <image id="player-alt_sword-rh" file="/right_hand/alt_sword.png" cols="5" />
+        <image id="player-empty-rh" file="/right_hand/empty.png" />
+
+        <image id="player-empty-lh" file="/left_hand/empty.png" />
+
+        <image id="player-empty-legs" file="/legs/empty.png" />
     </atlas>
 </resources>
