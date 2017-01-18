@@ -9,11 +9,12 @@
 
 #include "oxygine-framework.h"
 
+#include "core_components/DrawableObj.h"
+
 using namespace oxygine;
 
-class Unit : public Object {
+class Unit : public DrawableObj {
 	protected:
-		spSprite view;
 	public:
 		Unit();
 		virtual void init();
