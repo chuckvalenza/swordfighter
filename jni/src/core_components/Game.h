@@ -13,6 +13,8 @@
 #include "ui_components/HUD.h"
 #include "world/World.h"
 #include "core_components/Screen.h"
+#include "units/Player.h"
+
 
 using namespace oxygine;
 
@@ -24,6 +26,7 @@ class Game : public Actor {
 		HUD* ui;
 		World* world;
 		Screen* screen;
+		spUnit player;
 
 		void createWorld();
 		void createPlayer();

@@ -7,8 +7,6 @@
 
 #include "core_components/Game.h"
 
-#include "units/Unit.h"
-
 Game::Game()
 {
 }
@@ -21,16 +19,14 @@ void Game::createWorld()
 
 void Game::createPlayer()
 {
-	//player = new Player;
-	//player->setScreen(screen);
-	//player->init(this); // attach view to game actor
+	player = new Player;
+	player->init();
+	player->setPosition(screen->getSize() /2.0f);
+	player->attachTo(this);
 }
 
 void Game::createHUD()
 {
-//////////////
-	spUnit player = new Unit;
-//////////////
 	ui = new HUD;
 	ui->setScreen(screen);
 	ui->init(this, player);
