@@ -3,6 +3,7 @@
     <set path="images/player" />
     <atlas>
         <image id="player-empty-torso" file="/torso/empty.png" cols="5" />
+        <image id="player-empty-head" file="/head/empty.png" cols="5" />
 
         <image id="player-raw_sword-rh" file="/right_hand/raw_sword.png" cols="5" />
         <image id="player-alt_sword-rh" file="/right_hand/alt_sword.png" cols="5" />
