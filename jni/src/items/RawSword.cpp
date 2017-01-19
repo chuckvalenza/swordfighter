@@ -8,7 +8,7 @@
 
 RawSword::RawSword()
 {
-	init("raw_sword");
+	init("raw_sword", Item::WIELDABLE);
 }
 
 int RawSword::getDmg()

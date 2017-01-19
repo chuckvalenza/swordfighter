@@ -13,14 +13,25 @@ using namespace oxygine;
 
 DECLARE_SMART(Item, spItem);
 
-class Item : public Object {
+class Item : virtual public Object {
+	private:
 	protected:
+		std::string item_name;
 		std::string menu_model; // for navigation in menus
 		std::string world_model; // for when the item is on the ground
 		std::string equipped_model; // for when it is equipped on a character
 	public:
+		enum ItemType {
+			WEARABLE,
+			WIELDABLE,
+			CONSUMABLE,
+			NONE
+		};
+
 		Item();
-		void init(std::string);
+		ItemType type;
+		void init(std::string, ItemType);
+		std::string getName();
 		std::string menuStr();
 		std::string worldStr();
 		std::string equippedStr();

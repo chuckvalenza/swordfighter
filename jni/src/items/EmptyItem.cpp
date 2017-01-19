@@ -8,5 +8,5 @@
 
 EmptyItem::EmptyItem()
 {
-	init("empty");
+	init("empty", Item::NONE);
 }
