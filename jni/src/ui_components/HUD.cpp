@@ -9,6 +9,7 @@
 #include "commands/MoveCommand.h"
 #include "commands/AttackCommand.h"
 #include "commands/EquipCommand.h"
+#include "units/Unit.h"
 #include "items/Item.h"
 #include "items/items.h"
 

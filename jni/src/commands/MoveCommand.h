@@ -9,22 +9,17 @@
 
 #include "oxygine-framework.h"
 
-#include "commands/Command.h"
+#include "commands/DirectionalCommand.h"
 #include "units/Unit.h"
 
 using namespace oxygine;
 
 DECLARE_SMART(Unit, spUnit);
 
-class MoveCommand : public Command {
+class MoveCommand : public DirectionalCommand {
 	private:
-		spUnit obj;
-		Vector2 dir;
 	public:
 		MoveCommand();
-		void init(spUnit);
-		void setDir(Vector2);
-		void setUnit(spUnit);
 		virtual void execute();
 };
 

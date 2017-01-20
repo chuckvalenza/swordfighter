@@ -10,7 +10,7 @@
 #include "oxygine-framework.h"
 
 #include "core_components/DrawableObj.h"
-#include "commands/Command.h"
+#include "commands/DirectionalCommand.h"
 
 using namespace oxygine;
 
@@ -21,11 +21,11 @@ class Joystick : public DrawableObj {
 		bool pressed;
 		spSprite joystick;
 		spSprite finger;
-		Command* action;
+		DirectionalCommand* action;
 		Vector2 dir;
 	public:
 		Joystick();
-		void setAction(Command*);
+		void setAction(DirectionalCommand*);
 		void onEvent(Event*);
 		void update(const UpdateState&);
 };

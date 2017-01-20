@@ -15,8 +15,6 @@
 
 using namespace oxygine;
 
-DECLARE_SMART(Unit, spUnit);
-
 class HUD : public DrawableObj {
 	private:
 		Screen* screen;

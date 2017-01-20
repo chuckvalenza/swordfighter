@@ -28,7 +28,7 @@ Joystick::Joystick() : pressed(false), dir(0, 0)
 	view->addEventListener(TouchEvent::MOVE, CLOSURE(this, &Joystick::onEvent));
 }
 
-void Joystick::setAction(Command* c)
+void Joystick::setAction(DirectionalCommand* c)
 {
 	action = c;
 }
@@ -60,6 +60,9 @@ void Joystick::onEvent(Event* ev)
 
 	if (!pressed) {
 		dir = Vector2(0, 0);
+	} else {
+		action->setDir(dir);
+		action->execute();
 	}
 }
 

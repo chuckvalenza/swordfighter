@@ -11,22 +11,15 @@ AttackCommand::AttackCommand()
 
 }
 
-void AttackCommand::init(spUnit object)
-{
-	obj = object;
-}
-
-void AttackCommand::setDir(Vector2 direction)
-{
-	dir = direction;
-}
-
-void AttackCommand::setUnit(spUnit object)
-{
-	obj = object;
-}
-
 void AttackCommand::execute()
 {
-	//obj->attack(dir);
+	float angle = atan2f(dir.y, dir.x);
+
+	if (angle >= -3 && angle <= 1.5) {
+		angle += M_PI / 2;
+	} else {
+		angle -= 1.5f * M_PI;
+	}
+
+	obj->attack(angle);
 }

@@ -10,22 +10,15 @@ MoveCommand::MoveCommand()
 {
 }
 
-void MoveCommand::init(spUnit object)
-{
-	obj = object;
-}
-
-void MoveCommand::setDir(Vector2 direction)
-{
-	dir = direction;
-}
-
-void MoveCommand::setUnit(spUnit object)
-{
-	obj = object;
-}
-
 void MoveCommand::execute()
 {
-	//obj->move(dir);
+	float angle = atan2f(dir.y, dir.x);
+
+	if (angle >= -3 && angle <= 1.5) {
+		angle += M_PI / 2;
+	} else {
+		angle -= 1.5f * M_PI;
+	}
+
+	obj->move(angle, 500);
 }
