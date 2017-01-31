@@ -19,6 +19,8 @@ using namespace oxygine;
 
 class Player : public Unit {
 	private:
+		std::chrono::milliseconds atk_anim_timer;
+
 		spWieldable rh_item;
 		spWieldable lh_item;
 		spWearable headgear;
@@ -30,28 +32,31 @@ class Player : public Unit {
 		spSprite head;
 		spSprite torso;
 		spSprite legs;
+
+		void attackAnim(timeMS ms);
 	public:
-		enum PlayerState {
-			ATTACKING,
-			BLOCKING,
-			STANDING,
-			MOVING
+		bool moving;
+		enum AttackType {
+			SWING,
+			RANGE,
+			PUNCH,
+			NONE
 		};
 
-		PlayerState state;
+		AttackType atk_type;
 
 		Player();
 		void init();
-		void setTorso(spWearable);
-/*
-		void setRHItem(spWieldable);
-		void setLHItem(spWieldable);
 		void setHeadgear(spWearable);
+		void setTorso(spWearable);
+		void setRHItem(spWieldable);
+		void attack(float);
+		void move(float);
+		void swingAnimation(timeMS);
+		void stopAttack();
+/*
+		void setLHItem(spWieldable);
 		void setPants(spWearable);
-		void setDir();
-		void attack();
-		void move(timeMS);
-		void changeAnim(std::string, int);
 */
 		void update(const UpdateState&);
 };

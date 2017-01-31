@@ -20,5 +20,5 @@ void MoveCommand::execute()
 		angle -= 1.5f * M_PI;
 	}
 
-	obj->move(angle, 500);
+	obj->move(angle);
 }
