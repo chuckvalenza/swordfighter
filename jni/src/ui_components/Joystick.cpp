@@ -30,6 +30,10 @@ Joystick::Joystick() : pressed(false), dir(0, 0)
 
 void Joystick::setAction(DirectionalCommand* c)
 {
+	if (action) {
+		delete action;
+	}
+
 	action = c;
 }
 
@@ -60,13 +64,14 @@ void Joystick::onEvent(Event* ev)
 
 	if (!pressed) {
 		dir = Vector2(0, 0);
-	} else {
-		action->setDir(dir);
-		action->execute();
+		action->undo();
 	}
 }
 
 void Joystick::update(const UpdateState& us)
 {
-
+	if (pressed) {
+		action->setDir(dir);
+		action->execute();
+	}
 }

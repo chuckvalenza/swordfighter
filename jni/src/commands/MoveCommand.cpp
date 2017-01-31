@@ -8,6 +8,12 @@
 
 MoveCommand::MoveCommand()
 {
+
+}
+
+void MoveCommand::undo()
+{
+
 }
 
 void MoveCommand::execute()

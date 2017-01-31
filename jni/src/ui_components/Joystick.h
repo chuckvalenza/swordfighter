@@ -22,6 +22,7 @@ class Joystick : public DrawableObj {
 		spSprite joystick;
 		spSprite finger;
 		DirectionalCommand* action;
+		DirectionalCommand* undo_action;
 		Vector2 dir;
 	public:
 		Joystick();

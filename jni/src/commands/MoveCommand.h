@@ -14,13 +14,12 @@
 
 using namespace oxygine;
 
-DECLARE_SMART(Unit, spUnit);
-
 class MoveCommand : public DirectionalCommand {
 	private:
 	public:
 		MoveCommand();
-		virtual void execute();
+		void undo();
+		void execute();
 };
 
 #endif //SWORD_FIGHTER_MOVECOMMAND_H

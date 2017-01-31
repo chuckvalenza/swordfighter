@@ -11,6 +11,11 @@ AttackCommand::AttackCommand()
 
 }
 
+void AttackCommand::undo()
+{
+	obj->stopAttack();
+}
+
 void AttackCommand::execute()
 {
 	float angle = atan2f(dir.y, dir.x);

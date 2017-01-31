@@ -16,6 +16,7 @@ class DirectionalCommand : public Command {
 		DirectionalCommand();
 		void init(spUnit);
 		void setDir(Vector2);
+		virtual void undo() = 0;
 };
 
 #endif //SWORD_FIGHTER_DIRECTIONALCOMMAND_H
