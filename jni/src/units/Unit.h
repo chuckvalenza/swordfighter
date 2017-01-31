@@ -13,11 +13,16 @@
 
 using namespace oxygine;
 
+DECLARE_SMART(Unit, spUnit);
+
 class Unit : public DrawableObj {
 	protected:
 	public:
 		Unit();
 		virtual void init();
+		virtual void attack(float) = 0;
+		virtual void move(float) = 0;
+		virtual void stopAttack() = 0;
 		virtual void update(const UpdateState& us) {}
 };
 
