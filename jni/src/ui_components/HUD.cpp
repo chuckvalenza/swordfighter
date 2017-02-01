@@ -23,18 +23,18 @@ HUD::HUD()
 	quick_slot4 = new EquipSlot;
 }
 
-void HUD::init(spActor game, spUnit player)
+void HUD::init(spUnit player, World* world)
 {
 	float center_w = screen->getWidth() / 2.0f;
 	float center_h = screen->getHeight() / 2.0f;
 
 	view = new Sprite;
-	view->attachTo(game);
 
 	left_joy->setY(center_h - left_joy->getHeight());
 	left_joy->setX(right_joy->getWidth() * 0.25f);
 	MoveCommand* mc = new MoveCommand;
 	mc->init(player);
+	mc->setWorld(world);
 	left_joy->setAction(mc);
 	left_joy->attachTo(view);
 

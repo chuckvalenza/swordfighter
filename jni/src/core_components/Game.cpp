@@ -29,7 +29,8 @@ void Game::createHUD()
 {
 	ui = new HUD;
 	ui->setScreen(screen);
-	ui->init(this, player);
+	ui->init(player, world);
+	ui->attachTo(this);
 }
 
 void Game::init()

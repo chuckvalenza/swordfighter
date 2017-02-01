@@ -10,6 +10,7 @@
 #include "oxygine-framework.h"
 
 #include "core_components/Screen.h"
+#include "world/World.h"
 #include "ui_components/Joystick.h"
 #include "ui_components/EquipSlot.h"
 
@@ -29,7 +30,7 @@ class HUD : public DrawableObj {
 	public:
 		HUD();
 		void setScreen(Screen*);
-		void init(spActor, spUnit);
+		void init(spUnit, World*);
 		void setScale(float);
 		void update(const UpdateState&);
 };
