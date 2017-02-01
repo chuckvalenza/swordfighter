@@ -51,4 +51,6 @@ void Game::init()
 void Game::doUpdate(const UpdateState& us)
 {
 	ui->update(us);
+	world->update(us);
+	player->update(us);
 }
