@@ -71,6 +71,7 @@ void Joystick::onEvent(Event* ev)
 void Joystick::update(const UpdateState& us)
 {
 	if (pressed) {
+		action->setDT(us.dt);
 		action->setDir(dir);
 		action->execute();
 	}

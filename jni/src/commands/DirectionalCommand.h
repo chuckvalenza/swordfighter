@@ -12,9 +12,11 @@ class DirectionalCommand : public Command {
 	protected:
 		spUnit obj;
 		Vector2 dir;
+		float dt;
 	public:
 		DirectionalCommand();
 		void init(spUnit);
+		void setDT(float);
 		void setDir(Vector2);
 		virtual void undo() = 0;
 };

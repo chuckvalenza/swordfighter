@@ -11,6 +11,11 @@ MoveCommand::MoveCommand()
 
 }
 
+void MoveCommand::setWorld(World* w)
+{
+	world = w;
+}
+
 void MoveCommand::undo()
 {
 
@@ -27,4 +32,10 @@ void MoveCommand::execute()
 	}
 
 	obj->move(angle);
+
+	Vector2 pos = world->getPosition();
+	pos = pos - dir * (dt / 1000.0f) * 5; //player->getMoveMultiplier();
+	//pos *= world->getTile(pos)->getMoveMultiplier()
+
+	world->setPosition(pos);
 }

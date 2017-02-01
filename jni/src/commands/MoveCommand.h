@@ -11,13 +11,16 @@
 
 #include "commands/DirectionalCommand.h"
 #include "units/Unit.h"
+#include "world/World.h"
 
 using namespace oxygine;
 
 class MoveCommand : public DirectionalCommand {
 	private:
+		World* world;
 	public:
 		MoveCommand();
+		void setWorld(World*);
 		void undo();
 		void execute();
 };
