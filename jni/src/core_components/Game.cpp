@@ -14,7 +14,8 @@ Game::Game()
 void Game::createWorld()
 {
 	world = new World;
-	world->init(this);
+	world->init();
+	world->attachTo(this);
 }
 
 void Game::createPlayer()

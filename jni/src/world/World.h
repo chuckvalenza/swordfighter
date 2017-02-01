@@ -26,7 +26,7 @@ class World : public DrawableObj {
 		Terrain* ground_tiles[WIDTH][HEIGHT];
 	public:
 		World();
-		void init(spActor);
+		void init();
 		void loadTerrain();
 		void update(const UpdateState&);
 };

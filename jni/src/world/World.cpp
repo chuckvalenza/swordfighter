@@ -9,10 +9,9 @@ World::World()
 
 }
 
-void World::init(spActor game)
+void World::init()
 {
 	view = new Sprite;
-	view->attachTo(game);
 
 	/*
 	grass_terrain.init(0.9, "world-grass");
