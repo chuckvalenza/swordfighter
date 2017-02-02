@@ -34,8 +34,8 @@ void MoveCommand::execute()
 	obj->move(angle);
 
 	Vector2 pos = world->getPosition();
-	pos = pos - dir * (dt / 1000.0f) * 5; //player->getMoveMultiplier();
-	//pos *= world->getTile(pos)->getMoveMultiplier()
+	float penalty = obj->getMoveMultiplier();// * world->getMoveMultiplier(pos);
+	pos -= dir * (dt / 1000.0f) * (5 * penalty);
 
 	world->setPosition(pos);
 }

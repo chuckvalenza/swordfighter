@@ -17,6 +17,8 @@
 
 using namespace oxygine;
 
+#define ATK_PENALTY 0.7f
+
 class Player : public Unit {
 	private:
 		std::chrono::milliseconds atk_anim_timer;
@@ -54,6 +56,7 @@ class Player : public Unit {
 		void move(float);
 		void swingAnimation(timeMS);
 		void stopAttack();
+		float getMoveMultiplier();
 /*
 		void setLHItem(spWieldable);
 		void setPants(spWearable);

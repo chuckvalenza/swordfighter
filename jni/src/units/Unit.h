@@ -23,6 +23,7 @@ class Unit : public DrawableObj {
 		virtual void attack(float) = 0;
 		virtual void move(float) = 0;
 		virtual void stopAttack() = 0;
+		virtual float getMoveMultiplier() = 0;
 		virtual void update(const UpdateState& us) {}
 };
 

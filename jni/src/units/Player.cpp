@@ -129,6 +129,15 @@ void Player::move(float angle)
 	}
 }
 
+float Player::getMoveMultiplier()
+{
+	if(atk_type == NONE) {
+		return 1.0f;
+	}
+
+	return ATK_PENALTY;
+}
+
 void Player::update(const UpdateState& us)
 {
 /*
