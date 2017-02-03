@@ -9,7 +9,6 @@
 
 #include "oxygine-framework.h"
 
-#include "core_components/Game.h"
 #include "units/Unit.h"
 #include "items/Wearable.h"
 #include "items/Wieldable.h"
@@ -31,9 +30,6 @@ class Player : public Unit {
 
 		spSprite left_hand;
 		spSprite right_hand;
-		spSprite head;
-		spSprite torso;
-		spSprite legs;
 
 		void attackAnim(timeMS ms);
 	public:
@@ -49,19 +45,20 @@ class Player : public Unit {
 
 		Player();
 		void init();
+		void attack(float);
+		void move(float);
+		void stopAttack();
+		float getMoveMultiplier();
+		void update(const UpdateState&);
+
 		void setHeadgear(spWearable);
 		void setTorso(spWearable);
 		void setRHItem(spWieldable);
-		void attack(float);
-		void move(float);
 		void swingAnimation(timeMS);
-		void stopAttack();
-		float getMoveMultiplier();
 /*
 		void setLHItem(spWieldable);
 		void setPants(spWearable);
 */
-		void update(const UpdateState&);
 };
 
 #endif //SWORD_FIGHTER_PLAYER_H

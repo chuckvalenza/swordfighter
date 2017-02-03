@@ -38,6 +38,16 @@ void DrawableObj::setY(float y)
 	view->setY(y);
 }
 
+float DrawableObj::getX()
+{
+	return view->getX();
+}
+
+float DrawableObj::getY()
+{
+	return view->getY();
+}
+
 void DrawableObj::setWidth(float w)
 {
 	view->setWidth(w);

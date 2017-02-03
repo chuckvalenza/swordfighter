@@ -22,6 +22,8 @@ class DrawableObj : virtual public Object {
 		void setPosition(Vector2);
 		void setX(float);
 		void setY(float);
+		float getX();
+		float getY();
 		Vector2 getPosition();
 		void setWidth(float);
 		void setHeight(float);

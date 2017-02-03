@@ -14,6 +14,7 @@ Game::Game()
 void Game::createWorld()
 {
 	world = new World;
+	world->setScreen(screen);
 	world->init();
 	world->attachTo(this);
 }

@@ -2,5 +2,6 @@
 <resources>
     <set path="images/enemies" />
     <atlas>
+        <image id="enemy-dummy" file="/trainingdummy.png" cols="1" />
     </atlas>
 </resources>

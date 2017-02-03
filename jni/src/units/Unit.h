@@ -17,6 +17,9 @@ DECLARE_SMART(Unit, spUnit);
 
 class Unit : public DrawableObj {
 	protected:
+		spSprite head;
+		spSprite torso;
+		spSprite legs;
 	public:
 		Unit();
 		virtual void init();
