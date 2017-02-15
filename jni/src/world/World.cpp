@@ -60,9 +60,23 @@ void World::setScreen(Screen* s)
 void World::loadEnemies()
 {
 	spTrainingDummy dummy = new TrainingDummy;
-	dummy->init();
+	dummy->init(collision_set);
 	dummy->setPosition(view->getSize() / 2);
 	dummy->setY(dummy->getY() - 400);
+	dummy->attachTo(view);
+	enemies.push_back(dummy);
+
+	dummy = new TrainingDummy;
+	dummy->init(collision_set);
+	dummy->setPosition(view->getSize() / 2);
+	dummy->setX(dummy->getX() - 400);
+	dummy->attachTo(view);
+	enemies.push_back(dummy);
+
+	dummy = new TrainingDummy;
+	dummy->init(collision_set);
+	dummy->setPosition(view->getSize() / 2);
+	dummy->setX(dummy->getX() + 400);
 	dummy->attachTo(view);
 	enemies.push_back(dummy);
 }
