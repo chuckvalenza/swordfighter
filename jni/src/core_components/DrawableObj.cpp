@@ -23,9 +23,29 @@ void DrawableObj::setPosition(Vector2 v)
 	view->setPosition(v);
 }
 
+void DrawableObj::setNextPosition(Vector2 v)
+{
+	next_pos = v;
+}
+
+void DrawableObj::setSize(const Vector2& size)
+{
+	view->setSize(size);
+}
+
+Vector2 DrawableObj::getSize()
+{
+	return view->getSize();
+}
+
 Vector2 DrawableObj::getPosition()
 {
 	return view->getPosition();
+}
+
+Vector2 DrawableObj::getNextPosition()
+{
+	return next_pos;
 }
 
 void DrawableObj::setX(float x)
@@ -66,6 +86,11 @@ float DrawableObj::getWidth()
 float DrawableObj::getHeight()
 {
 	return view->getHeight();
+}
+
+void DrawableObj::setPriority(short p)
+{
+	view->setPriority(p);
 }
 
 void DrawableObj::attachTo(spActor parent)
