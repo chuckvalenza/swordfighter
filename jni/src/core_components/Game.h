@@ -28,10 +28,14 @@ class Game : public Actor {
 		Screen* screen;
 		spUnit player;
 
+		std::vector<spUnit> units;
+		std::vector<spUnit> collision_set;
+
 		void createWorld();
 		void createPlayer();
 		void createHUD();
 
+		void playerCollisionDetection();
 		void redraw();
 	protected:
 		void doUpdate(const UpdateState& us);

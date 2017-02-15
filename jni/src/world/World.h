@@ -30,9 +30,10 @@ class World : public DrawableObj {
 		Terrain* ground_tiles[WIDTH][HEIGHT];
 
 		std::vector<spUnit> enemies;
+		std::vector<spUnit>* collision_set;
 	public:
 		World();
-		void init();
+		void init(std::vector<spUnit>*);
 		void setScreen(Screen*);
 		void loadTerrain();
 		void loadEnemies();
@@ -40,6 +41,8 @@ class World : public DrawableObj {
 		void loadItems();
 		void loadChests();
 		void loadShops();
+		std::vector<spUnit> getUnits();
+		void collisionDetection();
 		void redraw();
 		void update(const UpdateState&);
 };

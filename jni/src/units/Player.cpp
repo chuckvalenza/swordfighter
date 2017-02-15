@@ -6,13 +6,17 @@
 
 #include "Player.h"
 
+#define COLLISION_BOUNDS 57.5f
+
 Player::Player()
 {
 
 }
 
-void Player::init()
+void Player::init(std::vector<spUnit>* c_set)
 {
+	collision_set = c_set;
+
 	view = new Sprite;
 	view->setAnchor(0.5f, 0.62f);
 
@@ -142,6 +146,11 @@ float Player::getMoveMultiplier()
 	return ATK_PENALTY;
 }
 
+float Player::getCBounds()
+{
+	return COLLISION_BOUNDS;// * scale_multiplier;
+}
+
 void Player::redraw()
 {
 	if (getWorldCoords() != next_pos) {
@@ -151,21 +160,9 @@ void Player::redraw()
 
 void Player::update(const UpdateState& us)
 {
-/*
-	std::string torso_str = torso->equippedStr() + "-torso";
-	//std::string rhi_str = rh_item->equippedStr() + "-rh";
-
-	int ms = 1;
-
-	if (state == STANDING) {
-		torso->addTween(torso_str, 0, 0, ms);
-		//rh_item->addTween(TweenAnim(res::r.getResAnim(rhi_str), 0, 0), ms);
-	} else if (state == ATTACKING) {
-		ms = 300;
-		torso->addTween(torso_str, 1, 4, ms);
-		//rm_item->addTween(TweenAnim(res::r.getResAnim(rhi_str), 1, 4), ms);
+	if (moved) {
+		collision_set->push_back(this);
 	}
-*/
 
 	moved = false;
 }

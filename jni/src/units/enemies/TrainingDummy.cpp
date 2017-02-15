@@ -3,14 +3,17 @@
  */
 
 #include "units/enemies/TrainingDummy.h"
+#define COLLISION_BOUNDS 70.0f
 
 TrainingDummy::TrainingDummy()
 {
 
 }
 
-void TrainingDummy::init()
+void TrainingDummy::init(std::vector<spUnit>* c_set)
 {
+	collision_set = c_set;
+
 	view = new Sprite;
 	view->setAnchor(0.5f, 0.5f);
 
@@ -39,6 +42,11 @@ void TrainingDummy::stopAttack()
 float TrainingDummy::getMoveMultiplier()
 {
 	return 0;
+}
+
+float TrainingDummy::getCBounds()
+{
+	return COLLISION_BOUNDS;// * scale_multiplier;
 }
 
 void TrainingDummy::redraw()

@@ -9,8 +9,10 @@ World::World()
 
 }
 
-void World::init()
+void World::init(std::vector<spUnit>* c_set)
 {
+	collision_set = c_set;
+
 	view = new Sprite;
 
 	/*
@@ -84,6 +86,51 @@ void World::loadChests()
 void World::loadShops()
 {
 
+}
+
+std::vector<spUnit> World::getUnits()
+{
+	return enemies;
+}
+
+/**
+ * iterate through all objects and do broad collision detection
+ */
+void World::collisionDetection()
+{
+	for (std::vector<spUnit>::iterator i1 = collision_set->begin();
+		i1 != collision_set->end(); ++i1) {
+		for (std::vector<spUnit>::iterator i2 = enemies.begin();
+			i2 != enemies.end(); ++i2) {
+			spUnit u1 = (*i1);
+			spUnit u2 = (*i2);
+
+			if (u1 != u2) {
+				float a_r = u1->getCBounds();
+				float a_x = u1->getNextPosition().x;
+				float a_y = u1->getNextPosition().y;
+
+				float b_r = u2->getCBounds();
+				float b_x = u2->getWorldX();
+				float b_y = u2->getWorldY();
+
+				float dx = a_x - b_x;
+				float dy = a_y - b_y;
+				float dist = hypot(dx, dy);
+
+				if (dist < a_r + b_r) {
+					Vector2 pos;
+					float angle = atan2(a_y - b_y, a_x - b_x);
+					float diff = a_r + b_r - dist;
+
+					pos.x = a_x + cos(angle) * diff;
+					pos.y = a_y + sin(angle) * diff;
+					u1->setNextPosition(pos);
+				}
+			}
+		}
+	}
+}
 
 void World::redraw()
 {
@@ -92,7 +139,10 @@ void World::redraw()
 	}
 }
 
-std::vector<spUnit> World::getUnits()
+void World::update(const UpdateState&)
 {
-
+	for (std::vector<spUnit>::iterator i = enemies.begin(); i != enemies.end();
+		++i) {
+		collision_set->push_back(*i);
+	}
 }

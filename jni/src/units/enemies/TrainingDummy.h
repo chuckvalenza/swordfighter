@@ -15,11 +15,12 @@ class TrainingDummy : public Unit {
 	private:
 	public:
 		TrainingDummy();
-		void init();
+		void init(std::vector<spUnit>*);
 		void attack(float);
 		void move(float);
 		void stopAttack();
 		float getMoveMultiplier();
+		float getCBounds();
 		void redraw();
 		void update(const UpdateState&);
 };

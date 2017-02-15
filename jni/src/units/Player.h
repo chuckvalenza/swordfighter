@@ -44,11 +44,12 @@ class Player : public Unit {
 		AttackType atk_type;
 
 		Player();
-		void init();
+		void init(std::vector<spUnit>*);
 		void attack(float);
 		void move(float);
 		void stopAttack();
 		float getMoveMultiplier();
+		float getCBounds();
 		void redraw();
 		void update(const UpdateState&);
 
