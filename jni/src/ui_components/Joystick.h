@@ -29,6 +29,7 @@ class Joystick : public DrawableObj {
 		Joystick();
 		void setAction(DirectionalCommand*);
 		void onEvent(Event*);
+		void redraw();
 		void update(const UpdateState&);
 };
 

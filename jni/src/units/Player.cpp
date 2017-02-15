@@ -51,6 +51,8 @@ void Player::init()
 
 	atk_type = NONE;
 	atk_anim_timer = std::chrono::milliseconds(0);
+
+	moved = false;
 }
 
 void Player::setHeadgear(spWearable new_item)
@@ -116,6 +118,8 @@ void Player::move(float angle)
 {
 	timeMS ms = 1;
 
+	moved = true;
+
 	if (atk_type == NONE) {
 		view->setRotation(angle);
 
@@ -138,6 +142,13 @@ float Player::getMoveMultiplier()
 	return ATK_PENALTY;
 }
 
+void Player::redraw()
+{
+	if (getWorldCoords() != next_pos) {
+		setWorldCoords(next_pos);
+	}
+}
+
 void Player::update(const UpdateState& us)
 {
 /*
@@ -155,4 +166,6 @@ void Player::update(const UpdateState& us)
 		//rm_item->addTween(TweenAnim(res::r.getResAnim(rhi_str), 1, 4), ms);
 	}
 */
+
+	moved = false;
 }

@@ -22,6 +22,7 @@ class Terrain : public DrawableObj {
 		Terrain();
 		void init(float, std::string);
 		float getMoveSpeed();
+		void redraw();
 		void update(const UpdateState&);
 };
 

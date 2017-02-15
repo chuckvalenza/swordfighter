@@ -32,6 +32,7 @@ class HUD : public DrawableObj {
 		void setScreen(Screen*);
 		void init(spUnit, World*);
 		void setScale(float);
+		void redraw();
 		void update(const UpdateState&);
 };
 

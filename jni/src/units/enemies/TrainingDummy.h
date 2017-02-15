@@ -20,6 +20,7 @@ class TrainingDummy : public Unit {
 		void move(float);
 		void stopAttack();
 		float getMoveMultiplier();
+		void redraw();
 		void update(const UpdateState&);
 };
 

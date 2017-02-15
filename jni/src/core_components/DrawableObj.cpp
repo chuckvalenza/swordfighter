@@ -20,6 +20,7 @@ void DrawableObj::setRotation(float x)
 
 void DrawableObj::setPosition(Vector2 v)
 {
+	current_loc = v;
 	view->setPosition(v);
 }
 

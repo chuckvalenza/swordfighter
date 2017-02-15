@@ -31,6 +31,8 @@ class Game : public Actor {
 		void createWorld();
 		void createPlayer();
 		void createHUD();
+
+		void redraw();
 	protected:
 		void doUpdate(const UpdateState& us);
 	public:

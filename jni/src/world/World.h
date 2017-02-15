@@ -40,6 +40,7 @@ class World : public DrawableObj {
 		void loadItems();
 		void loadChests();
 		void loadShops();
+		void redraw();
 		void update(const UpdateState&);
 };
 

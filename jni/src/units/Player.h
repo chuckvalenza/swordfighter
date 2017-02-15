@@ -49,6 +49,7 @@ class Player : public Unit {
 		void move(float);
 		void stopAttack();
 		float getMoveMultiplier();
+		void redraw();
 		void update(const UpdateState&);
 
 		void setHeadgear(spWearable);

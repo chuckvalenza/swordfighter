@@ -33,9 +33,13 @@ void MoveCommand::execute()
 
 	obj->move(angle);
 
-	Vector2 pos = world->getPosition();
 	float penalty = obj->getMoveMultiplier();// * world->getMoveMultiplier(pos);
-	pos -= dir * (dt / 1000.0f) * (5 * penalty);
 
-	world->setPosition(pos);
+	Vector2 pos = world->getPosition();
+	pos -= dir * (dt / 1000.0f) * (5 * penalty);
+	world->setNextPosition(pos);
+
+	pos = obj->getWorldCoords();
+	pos += dir * (dt / 1000.0f) * (5 * penalty);
+	obj->setNextPosition(pos);
 }

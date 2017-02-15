@@ -28,6 +28,13 @@ float Terrain::getMoveSpeed()
 	return move_speed;
 }
 
+void Terrain::redraw()
+{
+	if (getPosition() != next_pos) {
+		setPosition(next_pos);
+	}
+}
+
 void Terrain::update(const UpdateState&)
 {
 

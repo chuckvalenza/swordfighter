@@ -41,6 +41,13 @@ float TrainingDummy::getMoveMultiplier()
 	return 0;
 }
 
+void TrainingDummy::redraw()
+{
+	if (getPosition() != next_pos) {
+		setPosition(next_pos);
+	}
+}
+
 void TrainingDummy::update(const UpdateState& us)
 {
 }

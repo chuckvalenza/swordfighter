@@ -23,8 +23,12 @@ void Game::createPlayer()
 {
 	player = new Player;
 	player->init();
-	player->setPosition(screen->getSize() /2.0f);
+	player->setPosition(screen->getSize() / 2.0f);
+	player->setWorldCoords(world->getSize() / 2.0f);
+	player->setNextPosition(world->getSize() / 2.0f);
 	player->attachTo(this);
+	player->setPriority(500);
+	units.push_back(player);
 }
 
 void Game::createHUD()
@@ -49,9 +53,16 @@ void Game::init()
 	createHUD();
 }
 
+void Game::redraw()
+{
+	world->redraw();
+	player->redraw();
+}
+
 void Game::doUpdate(const UpdateState& us)
 {
 	ui->update(us);
 	world->update(us);
 	player->update(us);
+	redraw();
 }

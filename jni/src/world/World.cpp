@@ -45,7 +45,9 @@ void World::loadTerrain()
 
 	view->setWidth(50 * TILE_WIDTH);
 	view->setHeight(50 * TILE_HEIGHT);
-	view->setPosition(-(view->getSize() / 2) + screen->getSize() / 2);
+	Vector2 p = -(view->getSize() / 2) + screen->getSize() / 2;
+	view->setPosition(p);
+	next_pos = p;
 }
 
 void World::setScreen(Screen* s)
@@ -82,9 +84,15 @@ void World::loadChests()
 void World::loadShops()
 {
 
+
+void World::redraw()
+{
+	if (getPosition() != next_pos) {
+		setPosition(next_pos);
+	}
 }
 
-void World::update(const UpdateState&)
+std::vector<spUnit> World::getUnits()
 {
 
 }

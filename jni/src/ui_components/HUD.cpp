@@ -103,6 +103,11 @@ void HUD::setScale(float scale)
 */
 }
 
+void HUD::redraw()
+{
+
+}
+
 /**
  * Iterate through all HUD objects and update them
  */

@@ -41,6 +41,12 @@ void EquipSlot::setAction(Command* c)
 
 void EquipSlot::onEvent(Event* ev)
 {
+
+}
+
+void EquipSlot::redraw()
+{
+
 }
 
 void EquipSlot::update(const UpdateState& us)

@@ -68,6 +68,11 @@ void Joystick::onEvent(Event* ev)
 	}
 }
 
+void Joystick::redraw()
+{
+
+}
+
 void Joystick::update(const UpdateState& us)
 {
 	if (pressed) {

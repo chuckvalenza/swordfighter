@@ -31,6 +31,7 @@ class EquipSlot : public DrawableObj {
 		void setAction(Command*);
 		void setItem(spItem);
 		void onEvent(Event*);
+		void redraw();
 		void update(const UpdateState&);
 };
 
