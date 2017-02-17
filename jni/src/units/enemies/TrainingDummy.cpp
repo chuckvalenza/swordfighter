@@ -10,9 +10,9 @@ TrainingDummy::TrainingDummy()
 
 }
 
-void TrainingDummy::init(std::vector<spUnit>* c_set)
+void TrainingDummy::init()
 {
-	collision_set = c_set;
+	Unit::init();
 
 	view = new Sprite;
 	view->setAnchor(0.5f, 0.5f);

@@ -13,9 +13,9 @@ Player::Player()
 
 }
 
-void Player::init(std::vector<spUnit>* c_set)
+void Player::init()
 {
-	collision_set = c_set;
+	unit_id = 0;
 
 	view = new Sprite;
 	view->setAnchor(0.5f, 0.62f);
@@ -160,9 +160,4 @@ void Player::redraw()
 
 void Player::update(const UpdateState& us)
 {
-	if (moved) {
-		collision_set->push_back(this);
-	}
-
-	moved = false;
 }

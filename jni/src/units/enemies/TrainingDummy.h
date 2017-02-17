@@ -15,7 +15,7 @@ class TrainingDummy : public Unit {
 	private:
 	public:
 		TrainingDummy();
-		void init(std::vector<spUnit>*);
+		void init();
 		void attack(float);
 		void move(float);
 		void stopAttack();

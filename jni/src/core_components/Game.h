@@ -14,7 +14,7 @@
 #include "world/World.h"
 #include "core_components/Screen.h"
 #include "units/Player.h"
-
+#include "core_components/Physics.h"
 
 using namespace oxygine;
 
@@ -27,15 +27,14 @@ class Game : public Actor {
 		World* world;
 		Screen* screen;
 		spUnit player;
+		Physics* physics;
 
 		std::vector<spUnit> units;
-		std::vector<spUnit> collision_set;
 
 		void createWorld();
 		void createPlayer();
 		void createHUD();
 
-		void playerCollisionDetection();
 		void redraw();
 	protected:
 		void doUpdate(const UpdateState& us);

@@ -13,6 +13,7 @@
 
 #include "oxygine-framework.h"
 
+#include <map>
 #include "core_components/Screen.h"
 #include "core_components/DrawableObj.h"
 #include "world/Terrain.h"
@@ -29,11 +30,12 @@ class World : public DrawableObj {
 		Terrain water_terrain;
 		Terrain* ground_tiles[WIDTH][HEIGHT];
 
-		std::vector<spUnit> enemies;
-		std::vector<spUnit>* collision_set;
+		std::map<int, spUnit> enemies;
+		std::map<int, spUnit> rigid_objs;
+		std::map<int, spUnit> moved_objs;
 	public:
 		World();
-		void init(std::vector<spUnit>*);
+		void init();
 		void setScreen(Screen*);
 		void loadTerrain();
 		void loadEnemies();
@@ -41,8 +43,9 @@ class World : public DrawableObj {
 		void loadItems();
 		void loadChests();
 		void loadShops();
-		std::vector<spUnit> getUnits();
-		void collisionDetection();
+		std::map<int, spUnit> getMoved();
+		std::map<int, spUnit> getRigids();
+		void clearMoved();
 		void redraw();
 		void update(const UpdateState&);
 };

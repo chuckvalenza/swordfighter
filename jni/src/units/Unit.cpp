@@ -11,9 +11,15 @@ Unit::Unit()
 
 }
 
-void Unit::init(std::vector<spUnit>*)
+int Unit::id()
 {
+	return unit_id;
+}
 
+void Unit::init()
+{
+	static int id_counter = 0;
+	unit_id = ++id_counter;
 }
 
 float Unit::getWorldX()
@@ -49,6 +55,17 @@ void Unit::setWorldCoords(Vector2 v)
 	prev_coords = world_coords;
 	world_coords = v;
 }
+
+bool Unit::hasMoved()
+{
+	return moved;
+}
+
+void Unit::unsetMoved()
+{
+	moved = false;
+}
+
 
 void Unit::undoMove()
 {
