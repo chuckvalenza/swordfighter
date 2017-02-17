@@ -1,6 +1,8 @@
-//
-// Created by cvalenza on 1/18/17.
-//
+/**
+ * Wieldable.h
+ *
+ * Description: Wieldable class of objects
+ */
 
 #ifndef SWORD_FIGHTER_WIELDABLE_H
 #define SWORD_FIGHTER_WIELDABLE_H

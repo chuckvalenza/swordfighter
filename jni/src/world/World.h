@@ -1,6 +1,8 @@
-//
-// Created by cvalenza on 1/9/17.
-//
+/**
+ * World.h
+ *
+ * Description: Houses objects, terrain, shops, enemies, etc...
+ */
 
 #ifndef SWORD_FIGHTER_WORLD_H
 #define SWORD_FIGHTER_WORLD_H

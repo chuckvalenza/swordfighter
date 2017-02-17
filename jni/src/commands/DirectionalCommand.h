@@ -1,6 +1,8 @@
-//
-// Created by cvalenza on 1/18/17.
-//
+/**
+ * DirectionalCommand.h
+ *
+ * Description: Command executed on player with specified direction
+ */
 
 #ifndef SWORD_FIGHTER_DIRECTIONALCOMMAND_H
 #define SWORD_FIGHTER_DIRECTIONALCOMMAND_H

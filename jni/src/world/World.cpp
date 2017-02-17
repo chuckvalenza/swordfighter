@@ -1,6 +1,8 @@
-//
-// Created by cvalenza on 1/9/17.
-//
+/**
+ * World.cpp
+ *
+ * Description: Houses objects, terrain, shops, enemies, etc...
+ */
 
 #include "World.h"
 

@@ -1,6 +1,8 @@
-//
-// Created by cvalenza on 1/18/17.
-//
+/**
+ * Wieldable.cpp
+ *
+ * Description: Wieldable class of objects
+ */
 
 #include "Wieldable.h"
 

@@ -1,6 +1,8 @@
-//
-// Created by cvalenza on 1/18/17.
-//
+/**
+ * DirectionalCommand.cpp
+ *
+ * Description: Command executed on player with specified direction
+ */
 
 #include "DirectionalCommand.h"
 
