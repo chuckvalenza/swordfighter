@@ -20,40 +20,24 @@ void Player::init()
 	view = new Sprite;
 	view->setAnchor(0.5f, 0.62f);
 
-	headgear = new Wearable;
-	headgear->init("empty", Item::WEARABLE);
-	std::string headgear_str = headgear->equippedStr() + "-legs";
-
-	rh_item = new Wieldable;
-	rh_item->init("raw_sword", Item::WIELDABLE);
-	std::string rhi_str = rh_item->equippedStr() + "-rh";
-
-	chestpiece = new Wearable;
-	chestpiece->init("empty", Item::WEARABLE);
-	std::string chestpiece_str = chestpiece->equippedStr() + "-torso";
-
-	pants = new Wearable;
-	pants->init("empty", Item::WEARABLE);
-	std::string pants_str = pants->equippedStr() + "-head";
-
-	head = new Sprite;
-	head->addTween(TweenAnim(res::r.getResAnim(headgear_str), 0, 0), 1);
-	head->attachTo(view);
-
-	right_hand = new Sprite;
-	right_hand->addTween(TweenAnim(res::r.getResAnim(rhi_str), 0, 0), 1);
-	right_hand->attachTo(view);
-
+	chestpiece = new EmptyTorso;
 	torso = new Sprite;
-	torso->addTween(TweenAnim(res::r.getResAnim(chestpiece_str), 0, 0), 1);
 	torso->attachTo(view);
+	setTorso(chestpiece);
+
+	rh_item = new Fist;
+	right_hand = new Sprite;
+	right_hand->attachTo(view);
+	setRHItem(rh_item);
+
+	headgear = new EmptyHead;
+	head = new Sprite;
+	head->attachTo(view);
+	setHeadgear(headgear);
+
 	view->setSize(torso->getSize());
 
-	legs = new Sprite;
-	legs->addTween(TweenAnim(res::r.getResAnim(pants_str), 0, 0), 1);
-	legs->attachTo(view);
-
-	atk_type = NONE;
+	atk_type = Wieldable::ItemType::NONE;
 	atk_anim_timer = std::chrono::milliseconds(0);
 
 	moved = false;
@@ -63,7 +47,7 @@ void Player::setHeadgear(spWearable new_item)
 {
 	headgear = new_item;
 	std::string str = headgear->equippedStr();
-	head->setResAnim(res::r.getResAnim(str));
+	head->removeTweens();
 	head->addTween(TweenAnim(res::r.getResAnim(str), 0, 0), 1);
 }
 
@@ -71,15 +55,15 @@ void Player::setTorso(spWearable new_item)
 {
 	chestpiece = new_item;
 	std::string str = chestpiece->equippedStr();
-	torso->setResAnim(res::r.getResAnim(str));
+	torso->removeTweens();
 	torso->addTween(TweenAnim(res::r.getResAnim(str), 0, 0), 1);
 }
 
 void Player::setRHItem(spWieldable new_item)
 {
 	rh_item = new_item;
-	std::string str = rh_item->equippedStr();
-	right_hand->setResAnim(res::r.getResAnim(str));
+	std::string str = rh_item->equippedStr() + "-rh";
+	right_hand->removeTweens();
 	right_hand->addTween(TweenAnim(res::r.getResAnim(str), 0, 0), 1);
 }
 
@@ -90,8 +74,14 @@ void Player::attackAnim(int ms)
 		(system_clock::now().time_since_epoch());
 
 	if (cur_time - atk_anim_timer > milliseconds(ms)) {
-		if (atk_type == SWING) {
-			std::string chestpiece_str = chestpiece->equippedStr() + "-torso";
+		if (atk_type == Wieldable::ItemType::SLASH) {
+			std::string chestpiece_str = chestpiece->equippedStr();
+			torso->addTween(TweenAnim(res::r.getResAnim(chestpiece_str), 1, 4), ms);
+
+			std::string rhi_str = rh_item->equippedStr() + "-rh";
+			right_hand->addTween(TweenAnim(res::r.getResAnim(rhi_str), 1, 4), ms);
+		} else if (atk_type == Wieldable::ItemType::PUNCH) {
+			std::string chestpiece_str = chestpiece->equippedStr();
 			torso->addTween(TweenAnim(res::r.getResAnim(chestpiece_str), 1, 4), ms);
 
 			std::string rhi_str = rh_item->equippedStr() + "-rh";
@@ -105,7 +95,9 @@ void Player::attackAnim(int ms)
 void Player::attack(float angle)
 {
 	if (rh_item->item_type == Wieldable::ItemType::SLASH) {
-		atk_type = SWING;
+		atk_type = Wieldable::ItemType::SLASH;
+	} else if (rh_item->item_type == Wieldable::ItemType::PUNCH) {
+		atk_type = Wieldable::ItemType::PUNCH;
 	}
 
 	view->setRotation(angle);
@@ -114,32 +106,22 @@ void Player::attack(float angle)
 
 void Player::stopAttack()
 {
-	atk_type = NONE;
+	atk_type = Wieldable::ItemType::NONE;
 	move(view->getRotation());
 }
 
 void Player::move(float angle)
 {
-	timeMS ms = 1;
-
 	moved = true;
 
-	if (atk_type == NONE) {
+	if (atk_type == Wieldable::ItemType::NONE) {
 		view->setRotation(angle);
-
-		std::string chestpiece_str = chestpiece->equippedStr() + "-torso";
-		torso->removeTweens();
-		torso->addTween(TweenAnim(res::r.getResAnim(chestpiece_str), 0, 0), ms);
-
-		std::string rhi_str = rh_item->equippedStr() + "-rh";
-		right_hand->removeTweens();
-		right_hand->addTween(TweenAnim(res::r.getResAnim(rhi_str), 0, 0), ms);
 	}
 }
 
 float Player::getMoveMultiplier()
 {
-	if(atk_type == NONE) {
+	if(atk_type == Wieldable::ItemType::NONE) {
 		return 1.0f;
 	}
 
@@ -155,6 +137,15 @@ void Player::redraw()
 {
 	if (getWorldCoords() != next_pos) {
 		setWorldCoords(next_pos);
+	}
+
+	if (atk_type == Wieldable::ItemType::NONE) {
+		timeMS ms = 1;
+		std::string chestpiece_str = chestpiece->equippedStr();
+		torso->addTween(TweenAnim(res::r.getResAnim(chestpiece_str), 0, 0), ms);
+
+		std::string rhi_str = rh_item->equippedStr() + "-rh";
+		right_hand->addTween(TweenAnim(res::r.getResAnim(rhi_str), 0, 0), ms);
 	}
 }
 

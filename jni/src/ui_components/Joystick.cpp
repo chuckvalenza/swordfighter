@@ -51,6 +51,7 @@ void Joystick::onEvent(Event* ev)
 		finger->setVisible(false);
 		joystick->setColor(Color::White);
 		pressed = false;
+		unpressed = true;
 	}
 
 	Vector2 center = view->getSize() / 2;
@@ -79,5 +80,9 @@ void Joystick::update(const UpdateState& us)
 		action->setDT(us.dt);
 		action->setDir(dir);
 		action->execute();
+	} else if (unpressed) {
+		action->undo();
 	}
+
+	unpressed = false;
 }

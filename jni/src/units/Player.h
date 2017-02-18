@@ -10,6 +10,7 @@
 #include "oxygine-framework.h"
 
 #include "units/Unit.h"
+#include "items/items.h"
 #include "items/Wearable.h"
 #include "items/Wieldable.h"
 #include <chrono>
@@ -34,14 +35,8 @@ class Player : public Unit {
 		void attackAnim(timeMS ms);
 	public:
 		bool moving;
-		enum AttackType {
-			SWING,
-			RANGE,
-			PUNCH,
-			NONE
-		};
 
-		AttackType atk_type;
+		Wieldable::ItemType atk_type;
 
 		Player();
 		void init();

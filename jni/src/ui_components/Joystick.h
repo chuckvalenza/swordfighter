@@ -20,6 +20,7 @@ DECLARE_SMART(Joystick, spJoystick);
 class Joystick : public DrawableObj {
 	private:
 		bool pressed;
+		bool unpressed;
 		spSprite joystick;
 		spSprite finger;
 		DirectionalCommand* action;

@@ -24,7 +24,9 @@ class Wieldable : public Item {
 		enum ItemType {
 			SLASH,
 			BOW,
-			SHIELD
+			PUNCH,
+			SHIELD,
+			NONE
 		};
 
 		ItemType item_type;
@@ -34,6 +36,9 @@ class Wieldable : public Item {
 		void setDamage(float);
 		int getItemType();
 		void setItemType(ItemType);
+		std::string menuStr();
+		std::string worldStr();
+		std::string equippedStr();
 };
 
 #endif //SWORD_FIGHTER_WIELDABLE_H

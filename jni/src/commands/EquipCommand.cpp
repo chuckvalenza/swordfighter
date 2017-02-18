@@ -10,7 +10,7 @@ EquipCommand::EquipCommand()
 {
 }
 
-void EquipCommand::init(spUnit u, spItem i)
+void EquipCommand::init(spPlayer u, spItem i)
 {
 	item = i;
 	player = u;
@@ -21,12 +21,16 @@ void EquipCommand::setItem(spItem i)
 	item = i;
 }
 
-void EquipCommand::setUnit(spUnit u)
+void EquipCommand::setUnit(spPlayer u)
 {
 	player = u;
 }
 
 void EquipCommand::execute()
 {
-	//player->setWeapon(item);
+	if (item->type == Item::WIELDABLE) {
+		player->setRHItem(safeSpCast<Wieldable>(item));
+	} else if (item->type == Item::WEARABLE) {
+		player->setTorso(safeSpCast<Wearable>(item));
+	}
 }

@@ -30,3 +30,18 @@ void Wieldable::setItemType(ItemType t)
 {
 	item_type = t;
 }
+
+std::string Wieldable::menuStr()
+{
+	return menu_model;
+}
+
+std::string Wieldable::worldStr()
+{
+	return world_model;
+}
+
+std::string Wieldable::equippedStr()
+{
+	return equipped_model;
+}

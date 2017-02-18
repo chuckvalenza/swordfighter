@@ -32,9 +32,9 @@ class Item : virtual public Object {
 		ItemType type;
 		void init(std::string, ItemType);
 		std::string getName();
-		std::string menuStr();
-		std::string worldStr();
-		std::string equippedStr();
+		virtual std::string menuStr() = 0;
+		virtual std::string worldStr() = 0;
+		virtual std::string equippedStr() = 0;
 };
 
 #endif //SWORD_FIGHTER_ITEM_H

@@ -19,17 +19,7 @@ void Item::init(std::string str, ItemType t)
 	equipped_model = "player-" + str;
 }
 
-std::string Item::menuStr()
+std::string Item::getName()
 {
-	return menu_model;
-}
-
-std::string Item::worldStr()
-{
-	return world_model;
-}
-
-std::string Item::equippedStr()
-{
-	return equipped_model;
+	return item_name;
 }

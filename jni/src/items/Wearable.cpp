@@ -30,3 +30,24 @@ void Wearable::setBuffType(ItemEffect t)
 {
 	effect_type = t;
 }
+
+std::string Wearable::menuStr()
+{
+	return menu_model;
+}
+
+std::string Wearable::worldStr()
+{
+	return world_model;
+}
+
+std::string Wearable::equippedStr()
+{
+	if (item_type == Wearable::ItemType::HEADGEAR) {
+		return equipped_model + "-head";
+	} else if (item_type == Wearable::ItemType::CHESTPIECE) {
+		return equipped_model + "-torso";
+	} else if (item_type == Wearable::ItemType::PANTS) {
+		return equipped_model + "-legs";
+	}
+}

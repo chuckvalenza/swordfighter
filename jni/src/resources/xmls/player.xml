@@ -7,9 +7,9 @@
 
         <image id="player-raw_sword-rh" file="/right_hand/raw_sword.png" cols="5" />
         <image id="player-alt_sword-rh" file="/right_hand/alt_sword.png" cols="5" />
-        <image id="player-empty-rh" file="/right_hand/empty.png" />
+        <image id="player-fist-rh" file="/right_hand/empty.png" />
 
-        <image id="player-empty-lh" file="/left_hand/empty.png" />
+        <image id="player-fist-lh" file="/left_hand/empty.png" />
 
         <image id="player-empty-legs" file="/legs/empty.png" />
     </atlas>

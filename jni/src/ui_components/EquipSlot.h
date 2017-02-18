@@ -21,7 +21,7 @@ DECLARE_SMART(Item, spItem);
 
 class EquipSlot : public DrawableObj {
 	private:
-		bool pressed;
+		bool unpressed;
 		spSprite equip_slot;
 		spSprite item_sprite;
 		spItem item;

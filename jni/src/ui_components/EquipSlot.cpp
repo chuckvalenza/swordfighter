@@ -41,7 +41,16 @@ void EquipSlot::setAction(Command* c)
 
 void EquipSlot::onEvent(Event* ev)
 {
+	TouchEvent* te = safeCast<TouchEvent*>(ev);
 
+	if (te->type == TouchEvent::TOUCH_DOWN) {
+		equip_slot->setColor(Color::Red);
+	}
+
+	if (te->type == TouchEvent::TOUCH_UP) {
+		equip_slot->setColor(Color::White);
+		unpressed = true;
+	}
 }
 
 void EquipSlot::redraw()
@@ -51,5 +60,10 @@ void EquipSlot::redraw()
 
 void EquipSlot::update(const UpdateState& us)
 {
+	if (unpressed && item->type != Item::NONE) {
+		action->execute();
+	}
+	//equip_slot->setColor(Color::Yellow);
 
+	unpressed = false;
 }

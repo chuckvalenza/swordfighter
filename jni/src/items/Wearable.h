@@ -21,12 +21,20 @@ class Wearable : public Item {
 	private:
 		float buff_val;
 	public:
+		enum ItemType {
+			HEADGEAR,
+			CHESTPIECE,
+			PANTS
+		};
+
 		enum ItemEffect {
 			HEALTH_BUFF,
 			DAMAGE_BUFF,
-			SPEED_BUFF
+			SPEED_BUFF,
+			NONE
 		};
 
+		ItemType item_type;
 		ItemEffect effect_type;
 
 		Wearable();
@@ -34,6 +42,9 @@ class Wearable : public Item {
 		void setBuff(float);
 		int getBuffType();
 		void setBuffType(ItemEffect);
+		std::string menuStr();
+		std::string worldStr();
+		std::string equippedStr();
 };
 
 #endif //SWORD_FIGHTER_WEARABLE_H

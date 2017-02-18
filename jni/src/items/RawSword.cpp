@@ -8,10 +8,6 @@
 
 RawSword::RawSword()
 {
+	item_type = Wieldable::ItemType::SLASH;
 	init("raw_sword", Item::WIELDABLE);
-}
-
-int RawSword::getDmg()
-{
-	return damage;
 }

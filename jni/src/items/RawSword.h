@@ -7,18 +7,11 @@
 #ifndef SWORD_FIGHTER_RAWSWORD_H
 #define SWORD_FIGHTER_RAWSWORD_H
 
-#include "oxygine-framework.h"
+#include "items/Wieldable.h"
 
-#include "items/Item.h"
-
-using namespace oxygine;
-
-class RawSword : public Item {
-	private:
-		int damage;
+class RawSword : public Wieldable {
 	public:
 		RawSword();
-		int getDmg();
 };
 
 #endif //SWORD_FIGHTER_RAWSWORD_H

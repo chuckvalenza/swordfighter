@@ -54,35 +54,39 @@ void HUD::init(spUnit player, World* world)
 	spItem item1, item2, item3, item4;
 	item1 = new RawSword;
 	item2 = new RawSword;
-	item3 = new EmptyItem;
-	item4 = new EmptyItem;
+	item3 = new Fist;
+	item4 = new Fist;
 
 	quick_slot1->setX(center_w - slot_width * 2.0f);
 	quick_slot1->setY(quick_bar_y);
-	EquipCommand* ec1 = new EquipCommand;
-	ec1->init(player, item1);
+	EquipCommand* ec = new EquipCommand;
+	ec->init(safeSpCast<Player>(player), item1);
 	quick_slot1->setItem(item1);
+	quick_slot1->setAction(ec);
 	quick_slot1->attachTo(view);
 
 	quick_slot2->setX(center_w - slot_width);
 	quick_slot2->setY(quick_bar_y);
-	EquipCommand* eq2 = new EquipCommand;
-	eq2->init(player, item2);
+	ec = new EquipCommand;
+	ec->init(safeSpCast<Player>(player), item2);
 	quick_slot2->setItem(item2);
+	quick_slot2->setAction(ec);
 	quick_slot2->attachTo(view);
 
 	quick_slot3->setX(screen->getWidth() / 2);
 	quick_slot3->setY(quick_bar_y);
-	EquipCommand* eq3 = new EquipCommand;
-	eq3->init(player, item3);
+	ec = new EquipCommand;
+	ec->init(safeSpCast<Player>(player), item3);
 	quick_slot3->setItem(item3);
+	quick_slot3->setAction(ec);
 	quick_slot3->attachTo(view);
 
 	quick_slot4->setX(screen->getWidth() / 2 + quick_slot4->getWidth());
 	quick_slot4->setY(quick_bar_y);
-	EquipCommand* eq4 = new EquipCommand;
-	eq4->init(player, item4);
+	ec = new EquipCommand;
+	ec->init(safeSpCast<Player>(player), item4);
 	quick_slot4->setItem(item4);
+	quick_slot4->setAction(ec);
 	quick_slot4->attachTo(view);
 }
 
@@ -115,4 +119,8 @@ void HUD::update(const UpdateState& us)
 {
 	left_joy->update(us);
 	right_joy->update(us);
+	quick_slot1->update(us);
+	quick_slot2->update(us);
+	quick_slot3->update(us);
+	quick_slot4->update(us);
 }
