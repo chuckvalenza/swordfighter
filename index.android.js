@@ -33,20 +33,17 @@ class GameMenu extends React.Component {
 					<View style={styles.buttonSplit}>
 						<Button style={styles.button}
 							onPress={onButtonPress}
-							title="Start Game"
-							color="#3399FF"
+							title='Start Game'
 						/>
 						<Text style={{height: 4}}> </Text>
 						<Button style={styles.button}
 							onPress={onButtonPress}
-							title="Place Holder 1"
-							color="#3399FF"
+							title='Place Holder 1'
 						/>
 						<Text style={{height: 4}}> </Text>
 						<Button style={styles.button}
 							onPress={onButtonPress}
-							title="Place Holder 2"
-							color="#3399FF"
+							title='Place Holder 2'
 						/>
 					</View>
 				</View>
@@ -61,7 +58,8 @@ class GameMenu extends React.Component {
 var styles = StyleSheet.create({
 	container: {
 		flex: 1,
-	backgroundColor: 'white',
+		backgroundColor: 'white',
+		//resizeMode: 'cover',
 		justifyContent: 'center',
 	},
 	hello: {
@@ -84,6 +82,7 @@ var styles = StyleSheet.create({
 		fontSize: 20,
 		textAlign: 'center',
 		margin: 10,
+		backgroundColor: '#4EA0DF',
 	},
 	belowButtons: {
 		flex: 0.4,
