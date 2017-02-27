@@ -1,4 +1,4 @@
 package com.chuckvalenza.SwordFighter;
 
-public class MainActivity extends MenuActivity {
+public class MainActivity extends SplashActivity {
 }
