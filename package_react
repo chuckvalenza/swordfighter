@@ -1,0 +1,5 @@
+BUNDLE_OUTPUT=android/assets/index.android.bundle 
+ASSET_DEST=android/res/
+
+react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output $BUNDLE_OUTPUT --assets-dest $ASSET_DEST
+
