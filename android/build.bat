@@ -1,1 +1,1 @@
-ndk-build NDK_MODULE_PATH=../libraries/ %*
+ndk-build NDK_MODULE_PATH=../../libraries/ %*
