@@ -5,11 +5,11 @@ import {
 	AppRegistry,
 	StyleSheet,
 	Button,
-	Alert,
 	Text,
+	Image,
 	View
 } from 'react-native';
-import { startGame } from './gamestarter';
+import { startGame } from './react/gamestarter';
 
 const onButtonPress = () => {
 	startGame((response) => {
@@ -20,7 +20,7 @@ const onButtonPress = () => {
 class GameMenu extends React.Component {
 	render() {
 		return (
-			<View style={styles.container}>
+			<Image source={require('./react/images/main_menu_bg.png')} style={styles.container}>
 				<View style={styles.aboveButtons}>
 				</View>
 
@@ -50,7 +50,7 @@ class GameMenu extends React.Component {
 
 				<View style={styles.belowButtons}>
 				</View>
-			</View>
+			</Image>
 		)		
 	}
 }
@@ -58,8 +58,8 @@ class GameMenu extends React.Component {
 var styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: 'white',
-		//resizeMode: 'cover',
+		height: null,
+		width: null,
 		justifyContent: 'center',
 	},
 	hello: {
