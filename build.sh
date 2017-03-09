@@ -1,2 +1,2 @@
 #!/bin/bash
-cd android && ./build.sh
+cd android && ./build.sh $@
