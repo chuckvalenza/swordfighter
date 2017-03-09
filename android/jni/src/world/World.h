@@ -27,6 +27,7 @@ class World : public DrawableObj {
 		Screen* screen;
 
 		WorldChunk* world_chunks[WORLD_WIDTH][WORLD_HEIGHT];
+		float chunk_size;
 
 		std::map<int, spUnit> enemies;
 		std::map<int, spUnit> rigid_objs;
@@ -41,7 +42,9 @@ class World : public DrawableObj {
 		void loadItems();
 		void loadChests();
 		void loadShops();
-		std::map<int, spUnit>* getCollisionSet(spUnit);
+		void addToChunks(spUnit obj);
+		void updateUnitChunk(spUnit obj);
+		std::map<int, spUnit> getCollisionSet(spUnit obj);
 		std::map<int, spUnit> getMoved();
 		std::map<int, spUnit> getRigids();
 		void clearMoved();

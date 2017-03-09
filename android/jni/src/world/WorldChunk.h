@@ -26,15 +26,16 @@ class WorldChunk : public DrawableObj {
 	private:
 		Terrain* ground_tiles[CHUNK_HEIGHT][CHUNK_HEIGHT];
 
-		std::map<int, spUnit>* tracked_enemies;
-		std::map<int, spUnit>* rigid_objs;
-		std::map<int, spUnit> collision_set;
+		std::map<int, spUnit> tracked_units;
+		std::map<int, spUnit> rigids;
 
 		void generateTerrain(int);
 	public:
 		WorldChunk();
 
 		void init(int);
+		void addUnit(spUnit);
+		void removeUnit(spUnit);
 		void addToCollisionSet(spUnit);
 		void addToCollisionSet(std::map<int, spUnit>);
 		std::map<int, spUnit> getRigids();

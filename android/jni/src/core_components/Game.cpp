@@ -89,5 +89,7 @@ void Game::doUpdate(const UpdateState& us)
 		physics->collisionDetection(player);
 	}
 
+	DebugActor::instance->addDebugString("Player x: %f y: %f",
+		player->getWorldX(), player->getWorldY());
 	redraw();
 }

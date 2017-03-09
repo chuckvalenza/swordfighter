@@ -39,19 +39,21 @@ void WorldChunk::generateTerrain(int seed)
 	view->setHeight(16 * TILE_WIDTH);
 }
 
-void WorldChunk::addToCollisionSet(spUnit obj)
+void WorldChunk::addUnit(spUnit obj)
 {
-	collision_set.insert(std::pair<int, spUnit>(obj->id(), obj));
+	tracked_units.insert(std::pair<int, spUnit>(obj->id(), obj));
+	rigids.insert(std::pair<int, spUnit>(obj->id(), obj));
 }
 
-void WorldChunk::addToCollisionSet(std::map<int, spUnit> new_objs)
+void WorldChunk::removeUnit(spUnit obj)
 {
-	collision_set.insert(new_objs.begin(), new_objs.end());
-	for (std::map<int, spUnit>::iterator i = new_objs.begin();
-		i != new_objs.end(); ++i) {
-		spUnit obj = i->second;
-		collision_set.insert(std::pair<int, spUnit>(obj->id(), obj));
-	}
+	tracked_units.erase(obj->id());
+	rigids.insert(std::pair<int, spUnit>(obj->id(), obj));
+}
+
+std::map<int, spUnit> WorldChunk::getRigids()
+{
+	return rigids;
 }
 
 void WorldChunk::redraw()

@@ -29,8 +29,6 @@ void World::setScreen(Screen* s)
  */
 void World::loadTerrain()
 {
-	// right now, this just generates something because we do not have loading
-	// from file yet
 	int seed = 1;
 	for (int x = 0; x < WORLD_WIDTH; x++) {
 		for (int y = 0; y < WORLD_HEIGHT; y++) {
@@ -42,6 +40,7 @@ void World::loadTerrain()
 		}
 	}
 
+	chunk_size = world_chunks[0][0]->getWidth();
 	view->setWidth(WORLD_WIDTH * CHUNK_WIDTH * TILE_WIDTH);
 	view->setHeight(WORLD_HEIGHT * CHUNK_WIDTH * TILE_WIDTH);
 	Vector2 p = -(view->getSize() / 2) + screen->getSize() / 2;
@@ -62,6 +61,7 @@ void World::loadEnemies()
 	dummy->attachTo(view);
 	enemies.insert(std::pair<int, spUnit>(dummy->id(), dummy));
 	rigid_objs.insert(std::pair<int, spUnit>(dummy->id(), dummy));
+	addToChunks(dummy);
 
 	dummy = new TrainingDummy;
 	dummy->init();
@@ -70,6 +70,7 @@ void World::loadEnemies()
 	dummy->attachTo(view);
 	enemies.insert(std::pair<int, spUnit>(dummy->id(), dummy));
 	rigid_objs.insert(std::pair<int, spUnit>(dummy->id(), dummy));
+	addToChunks(dummy);
 
 	dummy = new TrainingDummy;
 	dummy->init();
@@ -78,6 +79,7 @@ void World::loadEnemies()
 	dummy->attachTo(view);
 	enemies.insert(std::pair<int, spUnit>(dummy->id(), dummy));
 	rigid_objs.insert(std::pair<int, spUnit>(dummy->id(), dummy));
+	addToChunks(dummy);
 }
 
 /**
@@ -113,9 +115,24 @@ void World::loadShops()
 
 }
 
-std::map<int, spUnit>* World::getCollisionSet(spUnit)
+std::map<int, spUnit> World::getCollisionSet(spUnit obj)
 {
-	return &enemies;
+	int x = obj->getWorldX() / chunk_size;
+	int y = obj->getWorldY() / chunk_size;
+	std::map<int, spUnit> col_set;
+
+	DebugActor::instance->addDebugString("Chunk x: %d y: %d", x, y);
+
+	for (int xm = -1; xm <= 1; xm++) {
+		for (int ym = -1; ym <= 1; ym++) {
+			if (x > 0 && x < WORLD_WIDTH - 1 && y > 0 && y < WORLD_HEIGHT) {
+				std::map<int, spUnit> cur = world_chunks[x + xm][y + ym]->getRigids();
+				col_set.insert(cur.begin(), cur.end());
+			}
+		}
+	}
+
+	return col_set;
 }
 
 std::map<int, spUnit> World::getRigids()
@@ -132,6 +149,27 @@ void World::redraw()
 {
 	if (getPosition() != next_pos) {
 		setPosition(next_pos);
+	}
+}
+
+void World::addToChunks(spUnit obj)
+{
+	int cur_x = obj->getWorldX() / chunk_size;
+	int cur_y = obj->getWorldY() / chunk_size;
+
+	world_chunks[cur_x][cur_y]->addUnit(obj);
+}
+
+void World::updateUnitChunk(spUnit obj)
+{
+	int cur_x = obj->getWorldX() / chunk_size;
+	int cur_y = obj->getWorldY() / chunk_size;
+	int next_x = obj->getWorldX() / chunk_size;
+	int next_y = obj->getWorldY() / chunk_size;
+
+	if (cur_x != next_x || cur_y != next_y) {
+		world_chunks[cur_x][cur_y]->removeUnit(obj);
+		world_chunks[next_x][next_y]->addUnit(obj);
 	}
 }
 

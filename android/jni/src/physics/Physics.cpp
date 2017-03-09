@@ -4,7 +4,7 @@
  * Description: Physics engine class
  */
 
-#include "Physics.h"
+#include "physics/Physics.h"
 
 Physics::Physics()
 {
@@ -31,7 +31,7 @@ void Physics::setWorld(World* w)
 void Physics::collisionDetection(spUnit u1)
 {
 	std::map<int, spUnit> collision_set;
-	collision_set = *(world->getCollisionSet(u1));
+	collision_set = world->getCollisionSet(u1);
 
 	for (std::map<int, spUnit>::iterator i = collision_set.begin();
 		i != collision_set.end(); ++i) {
