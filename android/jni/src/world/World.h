@@ -8,10 +8,8 @@
 #define SWORD_FIGHTER_WORLD_H
 
 // defined values are only here until dynamic map loading gets implemented
-#define WIDTH 500
-#define HEIGHT 500
-#define TILE_WIDTH 200
-#define TILE_HEIGHT 200
+#define WORLD_WIDTH 5
+#define WORLD_HEIGHT 5
 
 #include "oxygine-framework.h"
 
@@ -19,6 +17,7 @@
 #include "core_components/Screen.h"
 #include "core_components/DrawableObj.h"
 #include "world/Terrain.h"
+#include "world/WorldChunk.h"
 #include "units/enemies/TrainingDummy.h"
 
 using namespace oxygine;
@@ -27,10 +26,8 @@ class World : public DrawableObj {
 	private:
 		Screen* screen;
 
-		Terrain grass_terrain;
-		Terrain dirt_terrain;
-		Terrain water_terrain;
-		Terrain* ground_tiles[WIDTH][HEIGHT];
+		WorldChunk* world_chunks[WORLD_WIDTH][WORLD_HEIGHT];
+		float chunk_size;
 
 		std::map<int, spUnit> enemies;
 		std::map<int, spUnit> rigid_objs;
@@ -45,6 +42,9 @@ class World : public DrawableObj {
 		void loadItems();
 		void loadChests();
 		void loadShops();
+		void addToChunks(spUnit obj);
+		void updateUnitChunk(spUnit obj);
+		std::map<int, spUnit> getCollisionSet(spUnit obj);
 		std::map<int, spUnit> getMoved();
 		std::map<int, spUnit> getRigids();
 		void clearMoved();
