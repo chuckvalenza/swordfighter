@@ -51,7 +51,6 @@ class Unit : public DrawableObj {
 		void setWorldCoords(Vector2);
 		bool hasMoved();
 		void unsetMoved();
-		void undoMove();
 		Vector2 getWorldCoords();
 };
 

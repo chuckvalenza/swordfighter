@@ -67,11 +67,6 @@ void Unit::unsetMoved()
 }
 
 
-void Unit::undoMove()
-{
-	world_coords = prev_coords;
-}
-
 Vector2 Unit::getWorldCoords()
 {
 	return world_coords;
