@@ -7,6 +7,7 @@ LOCAL_MODULE := main
 LOCAL_SRC_FILES := ../../../../libraries/SDL/src/main/android/SDL_android_main.c
 
 FILE_LIST := $(wildcard $(LOCAL_PATH)/core_components/*.cpp)
+FILE_LIST += $(wildcard $(LOCAL_PATH)/physics/*.cpp)
 FILE_LIST += $(wildcard $(LOCAL_PATH)/commands/*.cpp)
 FILE_LIST += $(wildcard $(LOCAL_PATH)/units/*.cpp)
 FILE_LIST += $(wildcard $(LOCAL_PATH)/units/enemies/*.cpp)

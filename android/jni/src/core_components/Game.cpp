@@ -74,14 +74,14 @@ void Game::doUpdate(const UpdateState& us)
 	ui->update(us);
 	world->update(us);
 
-	physics->addToCollisionSet(player);
-	physics->addToCollisionSet(world->getRigids());
-
 	std::map<int, spUnit> moved_units = world->getMoved();
+
 	for (std::map<int, spUnit>::iterator i = moved_units.begin();
 		i != moved_units.end(); ++i) {
 		physics->collisionDetection(i->second);
+		i->second->unsetMoved();
 	}
+
 	world->clearMoved();
 
 	player->update(us);
@@ -89,6 +89,7 @@ void Game::doUpdate(const UpdateState& us)
 		physics->collisionDetection(player);
 	}
 
-	physics->clearCollisionSet();
+	DebugActor::instance->addDebugString("Player x: %f y: %f",
+		player->getWorldX(), player->getWorldY());
 	redraw();
 }

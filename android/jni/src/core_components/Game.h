@@ -14,7 +14,7 @@
 #include "world/World.h"
 #include "core_components/Screen.h"
 #include "units/Player.h"
-#include "core_components/Physics.h"
+#include "physics/Physics.h"
 
 using namespace oxygine;
 
