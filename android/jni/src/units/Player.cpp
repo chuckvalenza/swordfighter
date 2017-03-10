@@ -4,7 +4,7 @@
  * Description: Class for the player character
  */
 
-#include "Player.h"
+#include "units/Player.h"
 
 #define COLLISION_BOUNDS 57.5f
 
@@ -15,7 +15,9 @@ Player::Player()
 
 void Player::init()
 {
-	unit_id = 0;
+	obj_id = 0;
+
+	collision_bounds = COLLISION_BOUNDS;
 
 	view = new Sprite;
 	view->setAnchor(0.5f, 0.62f);
@@ -126,11 +128,6 @@ float Player::getMoveMultiplier()
 	}
 
 	return ATK_PENALTY;
-}
-
-float Player::getCBounds()
-{
-	return COLLISION_BOUNDS;// * scale_multiplier;
 }
 
 void Player::redraw()
