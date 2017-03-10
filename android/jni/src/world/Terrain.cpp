@@ -4,7 +4,7 @@
  * Description: Terrain tile utilizing flyweight pattern
  */
 
-#include "Terrain.h"
+#include "world/Terrain.h"
 
 Terrain::Terrain()
 {

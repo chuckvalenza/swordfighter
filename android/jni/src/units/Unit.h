@@ -9,20 +9,15 @@
 
 #include "oxygine-framework.h"
 
-#include "core_components/DrawableObj.h"
-
+#include "physics/Rigid.h"
 #include <map>
 
 using namespace oxygine;
 
 DECLARE_SMART(Unit, spUnit);
 
-class Unit : public DrawableObj {
+class Unit : public Rigid {
 	protected:
-		int unit_id;
-
-		Vector2 world_coords;
-		Vector2 prev_coords;
 		bool moved;
 
 		spSprite head;
@@ -38,20 +33,11 @@ class Unit : public DrawableObj {
 		virtual void move(float) = 0;
 		virtual void stopAttack() = 0;
 		virtual float getMoveMultiplier() = 0;
-		virtual float getCBounds() = 0;
 		virtual void redraw() {};
 		virtual void update(const UpdateState& us) {}
 
-		int id();
-		void setX(float);
-		void setY(float);
-		float getWorldX();
-		float getWorldY();
-		void setPosition(Vector2);
-		void setWorldCoords(Vector2);
 		bool hasMoved();
 		void unsetMoved();
-		Vector2 getWorldCoords();
 };
 
 #endif //SWORD_FIGHTER_UNIT_H

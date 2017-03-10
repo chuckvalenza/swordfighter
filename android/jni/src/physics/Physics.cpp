@@ -30,12 +30,12 @@ void Physics::setWorld(World* w)
  */
 void Physics::collisionDetection(spUnit u1)
 {
-	std::map<int, spUnit> collision_set;
+	std::map<int, spRigid> collision_set;
 	collision_set = world->getCollisionSet(u1);
 
-	for (std::map<int, spUnit>::iterator i = collision_set.begin();
+	for (std::map<int, spRigid>::iterator i = collision_set.begin();
 		i != collision_set.end(); ++i) {
-		spUnit u2 = i->second;
+		spRigid u2 = i->second;
 
 		if (u1 != u2) {
 			float a_r = u1->getCBounds();

@@ -30,8 +30,8 @@ class World : public DrawableObj {
 		float chunk_size;
 
 		std::map<int, spUnit> enemies;
-		std::map<int, spUnit> rigid_objs;
 		std::map<int, spUnit> moved_objs;
+		std::map<int, spRigid> rigid_objs;
 	public:
 		World();
 		void init();
@@ -44,9 +44,9 @@ class World : public DrawableObj {
 		void loadShops();
 		void addToChunks(spUnit obj);
 		void updateUnitChunk(spUnit obj);
-		std::map<int, spUnit> getCollisionSet(spUnit obj);
 		std::map<int, spUnit> getMoved();
-		std::map<int, spUnit> getRigids();
+		std::map<int, spRigid> getRigids();
+		std::map<int, spRigid> getCollisionSet(spUnit obj);
 		void clearMoved();
 		void redraw();
 		void update(const UpdateState&);

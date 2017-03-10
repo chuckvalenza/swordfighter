@@ -12,8 +12,8 @@ For the most up-to-date version, checkout the 'dev' branch.
 - [x] Splash screen
 - [x] React-native main menu which starts GameActivity
 - [x] On-screen joystick and quick-inventory controls
-- [ ] Rigid base class
-- [ ] Physics on rigids and not units
+- [x] Rigid base class
+- [x] Physics on rigids and not units
 - [x] Unit base class
 - [x] Player
 - [x] World composed of chunks

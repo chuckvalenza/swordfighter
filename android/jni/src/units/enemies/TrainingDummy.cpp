@@ -14,6 +14,8 @@ void TrainingDummy::init()
 {
 	Unit::init();
 
+	collision_bounds = COLLISION_BOUNDS;
+
 	view = new Sprite;
 	view->setAnchor(0.5f, 0.5f);
 
@@ -42,11 +44,6 @@ void TrainingDummy::stopAttack()
 float TrainingDummy::getMoveMultiplier()
 {
 	return 0;
-}
-
-float TrainingDummy::getCBounds()
-{
-	return COLLISION_BOUNDS;// * scale_multiplier;
 }
 
 void TrainingDummy::redraw()

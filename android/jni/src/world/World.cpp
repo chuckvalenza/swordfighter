@@ -4,7 +4,7 @@
  * Description: Houses objects, terrain, shops, enemies, etc...
  */
 
-#include "World.h"
+#include "world/World.h"
 
 World::World()
 {
@@ -115,34 +115,34 @@ void World::loadShops()
 
 }
 
-std::map<int, spUnit> World::getCollisionSet(spUnit obj)
+std::map<int, spUnit> World::getMoved()
+{
+	return moved_objs;
+}
+
+std::map<int, spRigid> World::getRigids()
+{
+	return rigid_objs;
+}
+
+std::map<int, spRigid> World::getCollisionSet(spUnit obj)
 {
 	int x = obj->getWorldX() / chunk_size;
 	int y = obj->getWorldY() / chunk_size;
-	std::map<int, spUnit> col_set;
+	std::map<int, spRigid> col_set;
 
 	DebugActor::instance->addDebugString("Chunk x: %d y: %d", x, y);
 
 	for (int xm = -1; xm <= 1; xm++) {
 		for (int ym = -1; ym <= 1; ym++) {
 			if (x > 0 && x < WORLD_WIDTH - 1 && y > 0 && y < WORLD_HEIGHT) {
-				std::map<int, spUnit> cur = world_chunks[x + xm][y + ym]->getRigids();
+				std::map<int, spRigid> cur = world_chunks[x + xm][y + ym]->getRigids();
 				col_set.insert(cur.begin(), cur.end());
 			}
 		}
 	}
 
 	return col_set;
-}
-
-std::map<int, spUnit> World::getRigids()
-{
-	return rigid_objs;
-}
-
-std::map<int, spUnit> World::getMoved()
-{
-	return moved_objs;
 }
 
 void World::redraw()
