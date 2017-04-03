@@ -7,11 +7,12 @@
 #ifndef SWORD_FIGHTER_ITEMS_H
 #define SWORD_FIGHTER_ITEMS_H
 
-#include "items/EmptyItem.h"
-#include "items/EmptyHead.h"
-#include "items/EmptyTorso.h"
-#include "items/EmptyLegs.h"
-#include "items/RawSword.h"
-#include "items/Fist.h"
+#include "items/armor/EmptyItem.h"
+#include "items/armor/EmptyHead.h"
+#include "items/armor/EmptyTorso.h"
+#include "items/armor/EmptyLegs.h"
+
+#include "items/weapons/RawSword.h"
+#include "items/weapons/Fist.h"
 
 #endif //SWORD_FIGHTER_ITEMS_H
