@@ -18,12 +18,13 @@ using namespace oxygine;
 DECLARE_SMART(Wieldable, spWieldable);
 
 class Wieldable : public Item {
-	private:
+	protected:
 		float damage;
+		float atk_size;
 	public:
 		enum ItemType {
 			SLASH,
-			BOW,
+			RANGE,
 			PUNCH,
 			SHIELD,
 			NONE
@@ -33,6 +34,7 @@ class Wieldable : public Item {
 
 		Wieldable();
 		float getDamage();
+		float getSize();
 		void setDamage(float);
 		int getItemType();
 		void setItemType(ItemType);

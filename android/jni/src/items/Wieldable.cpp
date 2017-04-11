@@ -16,6 +16,11 @@ float Wieldable::getDamage()
 	return damage;
 }
 
+float Wieldable::getSize()
+{
+	return atk_size;
+}
+
 void Wieldable::setDamage(float d)
 {
 	damage = d;
