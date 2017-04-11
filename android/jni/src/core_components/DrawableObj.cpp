@@ -99,3 +99,9 @@ void DrawableObj::attachTo(spActor parent)
 	view->attachTo(parent);
 }
 
+void DrawableObj::detach()
+{
+	if (view) {
+		view->detach();
+	}
+}
