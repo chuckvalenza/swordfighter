@@ -32,6 +32,7 @@ class World : public DrawableObj {
 		std::map<int, spUnit> enemies;
 		std::map<int, spUnit> moved_objs;
 		std::map<int, spRigid> rigid_objs;
+		std::map<int, spAttack> attack_objs;
 	public:
 		World();
 		void init();
@@ -42,14 +43,23 @@ class World : public DrawableObj {
 		void loadItems();
 		void loadChests();
 		void loadShops();
-		void addToChunks(spUnit obj);
-		void updateUnitChunk(spUnit obj);
+		void addEnemyToChunks(spUnit obj);
+		void addNPCToChunks(spUnit obj);
+		void removeEnemyFromChunks(spUnit obj);
+		void removeNPCFromChunks(spUnit obj);
+		void updateEnemyChunk(spUnit obj);
+		void updateNPCChunk(spUnit obj);
 		std::map<int, spUnit> getMoved();
 		std::map<int, spRigid> getRigids();
-		std::map<int, spRigid> getCollisionSet(spUnit obj);
+		std::map<int, spAttack> getAttacks();
+		std::map<int, spUnit> getLocalEnemies(spWorldObj obj);
+		std::map<int, spRigid> getCollisionSet(spRigid obj);
 		void clearMoved();
+		void clearAttacks();
 		void redraw();
 		void update(const UpdateState&);
+
+		spSprite getView();
 };
 
 #endif //SWORD_FIGHTER_WORLD_H

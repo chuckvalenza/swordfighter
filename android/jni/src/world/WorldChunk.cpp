@@ -39,21 +39,38 @@ void WorldChunk::generateTerrain(int seed)
 	view->setHeight(16 * TILE_WIDTH);
 }
 
-void WorldChunk::addUnit(spUnit obj)
+void WorldChunk::addNPC(spUnit obj)
 {
-	tracked_units.insert(std::pair<int, spUnit>(obj->id(), obj));
+	tracked_NPCs.insert(std::pair<int, spUnit>(obj->id(), obj));
 	rigids.insert(std::pair<int, spRigid>(obj->id(), obj));
 }
 
-void WorldChunk::removeUnit(spUnit obj)
+void WorldChunk::removeNPC(spUnit obj)
 {
-	tracked_units.erase(obj->id());
+	tracked_NPCs.erase(obj->id());
+	rigids.erase(obj->id());
+}
+
+void WorldChunk::addEnemy(spUnit obj)
+{
+	tracked_enemies.insert(std::pair<int, spUnit>(obj->id(), obj));
+	rigids.insert(std::pair<int, spRigid>(obj->id(), obj));
+}
+
+void WorldChunk::removeEnemy(spUnit obj)
+{
+	tracked_enemies.erase(obj->id());
 	rigids.erase(obj->id());
 }
 
 std::map<int, spRigid> WorldChunk::getRigids()
 {
 	return rigids;
+}
+
+std::map<int, spUnit> WorldChunk::getEnemies()
+{
+	return tracked_enemies;
 }
 
 void WorldChunk::redraw()
