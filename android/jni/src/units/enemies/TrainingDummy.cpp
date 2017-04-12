@@ -13,6 +13,7 @@ TrainingDummy::TrainingDummy()
 void TrainingDummy::init()
 {
 	Unit::init();
+	health = 100;
 
 	collision_bounds = COLLISION_BOUNDS;
 
@@ -26,9 +27,9 @@ void TrainingDummy::init()
 	view->setSize(torso->getSize());
 }
 
-void TrainingDummy::attack(float angle)
+spAttack TrainingDummy::attack(float angle)
 {
-
+	return NULL;
 }
 
 void TrainingDummy::move(float angle)
@@ -55,4 +56,5 @@ void TrainingDummy::redraw()
 
 void TrainingDummy::update(const UpdateState& us)
 {
+
 }

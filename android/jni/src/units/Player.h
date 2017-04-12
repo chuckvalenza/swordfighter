@@ -32,7 +32,8 @@ class Player : public Unit {
 		spSprite left_hand;
 		spSprite right_hand;
 
-		void attackAnim(timeMS ms);
+		void attackAnim(timeMS);
+		void createAttack(float, timeMS);
 	public:
 		bool moving;
 
@@ -40,7 +41,7 @@ class Player : public Unit {
 
 		Player();
 		void init();
-		void attack(float);
+		spAttack attack(float);
 		void move(float);
 		void stopAttack();
 		float getMoveMultiplier();

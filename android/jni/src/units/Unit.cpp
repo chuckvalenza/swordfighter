@@ -11,6 +11,13 @@ Unit::Unit()
 
 }
 
+Unit::~Unit()
+{
+	if (view) {
+		view->detach();
+	}
+}
+
 void Unit::init()
 {
 	Rigid::init();
@@ -24,4 +31,34 @@ bool Unit::hasMoved()
 void Unit::unsetMoved()
 {
 	moved = false;
+}
+
+bool Unit::hasAttacked()
+{
+	if (atk_state == ATTACKING) {
+		return true;
+	}
+
+	return false;
+}
+
+float Unit::takeDamage(float damage)
+{
+	health -= damage;
+
+	if (health < 0) {
+		health = 0;
+	}
+
+	return health;
+}
+
+float Unit::getHealth()
+{
+	return health;
+}
+
+spAttack Unit::getAttack()
+{
+	return atk;
 }

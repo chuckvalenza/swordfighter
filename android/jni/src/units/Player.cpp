@@ -5,8 +5,10 @@
  */
 
 #include "units/Player.h"
+#include <math.h>
 
 #define COLLISION_BOUNDS 57.5f
+#define PLAYER_ATK_RADIUS 125;
 
 Player::Player()
 {
@@ -16,6 +18,7 @@ Player::Player()
 void Player::init()
 {
 	obj_id = 0;
+	health = 100;
 
 	collision_bounds = COLLISION_BOUNDS;
 
@@ -42,7 +45,11 @@ void Player::init()
 	atk_type = Wieldable::ItemType::NONE;
 	atk_anim_timer = std::chrono::milliseconds(0);
 
+	atk_radius = PLAYER_ATK_RADIUS;
+
 	moved = false;
+	attacked = false;
+	atk_state = NOT_ATTACKED;
 }
 
 void Player::setHeadgear(spWearable new_item)
@@ -69,13 +76,27 @@ void Player::setRHItem(spWieldable new_item)
 	right_hand->addTween(TweenAnim(res::r.getResAnim(str), 0, 0), 1);
 }
 
-void Player::attackAnim(int ms)
+spAttack Player::attack(float angle)
 {
+	if (rh_item->item_type == Wieldable::ItemType::SLASH) {
+		atk_type = Wieldable::ItemType::SLASH;
+	} else if (rh_item->item_type == Wieldable::ItemType::PUNCH) {
+		atk_type = Wieldable::ItemType::PUNCH;
+	}
+
+	view->setRotation(angle);
+
+	angle -= M_PI / 2;
+
 	using namespace std::chrono;
+	int ms = 300;
+
 	milliseconds cur_time = duration_cast<milliseconds>
 		(system_clock::now().time_since_epoch());
 
 	if (cur_time - atk_anim_timer > milliseconds(ms)) {
+		atk_state = NOT_ATTACKED;
+		attacked = false;
 		if (atk_type == Wieldable::ItemType::SLASH) {
 			std::string chestpiece_str = chestpiece->equippedStr();
 			torso->addTween(TweenAnim(res::r.getResAnim(chestpiece_str), 1, 4), ms);
@@ -91,24 +112,29 @@ void Player::attackAnim(int ms)
 		}
 
 		atk_anim_timer = cur_time;
+	} else if (cur_time - atk_anim_timer + milliseconds(ms) / 2 > milliseconds(ms)
+		&& !attacked) {
+		atk_state = ATTACKING;
+		attacked = true;
+		atk = new Attack();
+		float x_offset = (atk_radius + rh_item->getSize()) * cos(angle);
+		float y_offset = (atk_radius + rh_item->getSize()) * sin(angle);
+		atk->init(rh_item->getSize(), rh_item->getDamage());
+		atk->setX(getWorldX() + x_offset);
+		atk->setY(getWorldY() + y_offset);
+	} else if (atk_state == ATTACKING) {
+		atk_state = ATTACKED;
+	} else if (atk_state == ATTACKED) {
+		atk = NULL;
 	}
-}
 
-void Player::attack(float angle)
-{
-	if (rh_item->item_type == Wieldable::ItemType::SLASH) {
-		atk_type = Wieldable::ItemType::SLASH;
-	} else if (rh_item->item_type == Wieldable::ItemType::PUNCH) {
-		atk_type = Wieldable::ItemType::PUNCH;
-	}
-
-	view->setRotation(angle);
-	attackAnim(300);
+	return atk;
 }
 
 void Player::stopAttack()
 {
 	atk_type = Wieldable::ItemType::NONE;
+	attacked = false;
 	move(view->getRotation());
 }
 
@@ -148,4 +174,5 @@ void Player::redraw()
 
 void Player::update(const UpdateState& us)
 {
+
 }

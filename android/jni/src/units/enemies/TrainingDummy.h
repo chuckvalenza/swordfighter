@@ -8,6 +8,7 @@
 #include "oxygine-framework.h"
 #include "core_components/res.h"
 #include "units/Unit.h"
+#include "physics/Attack.h"
 
 DECLARE_SMART(TrainingDummy, spTrainingDummy);
 
@@ -16,7 +17,7 @@ class TrainingDummy : public Unit {
 	public:
 		TrainingDummy();
 		void init();
-		void attack(float);
+		spAttack attack(float);
 		void move(float);
 		void stopAttack();
 		float getMoveMultiplier();

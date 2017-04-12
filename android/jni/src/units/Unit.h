@@ -10,6 +10,7 @@
 #include "oxygine-framework.h"
 
 #include "physics/Rigid.h"
+#include "physics/Attack.h"
 #include <map>
 
 using namespace oxygine;
@@ -18,7 +19,20 @@ DECLARE_SMART(Unit, spUnit);
 
 class Unit : public Rigid {
 	protected:
+		float health;
 		bool moved;
+		bool attacked;
+
+		enum AttackState {
+			NOT_ATTACKED,
+			ATTACKING,
+			ATTACKED
+		};
+
+		AttackState atk_state;
+
+		float atk_radius;
+		spAttack atk;
 
 		spSprite head;
 		spSprite torso;
@@ -27,9 +41,10 @@ class Unit : public Rigid {
 		std::vector<spUnit>* collision_set;
 	public:
 		Unit();
+		~Unit();
 
 		virtual void init();
-		virtual void attack(float) = 0;
+		virtual spAttack attack(float) = 0;
 		virtual void move(float) = 0;
 		virtual void stopAttack() = 0;
 		virtual float getMoveMultiplier() = 0;
@@ -38,6 +53,10 @@ class Unit : public Rigid {
 
 		bool hasMoved();
 		void unsetMoved();
+		bool hasAttacked();
+		float takeDamage(float);
+		float getHealth();
+		spAttack getAttack();
 };
 
 #endif //SWORD_FIGHTER_UNIT_H
