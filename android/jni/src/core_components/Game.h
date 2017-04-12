@@ -15,6 +15,7 @@
 #include "core_components/Screen.h"
 #include "units/Player.h"
 #include "physics/Physics.h"
+#include "physics/Attack.h"
 
 using namespace oxygine;
 

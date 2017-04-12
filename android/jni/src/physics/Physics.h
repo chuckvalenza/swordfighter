@@ -26,7 +26,8 @@ class Physics {
 
 		void setPlayer(spUnit);
 		void setWorld(World*);
-		void collisionDetection(spUnit);
+		void attackDetection(spAttack);
+		void collisionDetection(spRigid);
 };
 
 #endif //SWORD_FIGHTER_PHYSICS_H

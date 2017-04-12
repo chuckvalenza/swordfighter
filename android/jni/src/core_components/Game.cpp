@@ -75,21 +75,27 @@ void Game::doUpdate(const UpdateState& us)
 	world->update(us);
 
 	std::map<int, spUnit> moved_units = world->getMoved();
-
 	for (std::map<int, spUnit>::iterator i = moved_units.begin();
 		i != moved_units.end(); ++i) {
 		physics->collisionDetection(i->second);
 		i->second->unsetMoved();
 	}
-
 	world->clearMoved();
 
 	player->update(us);
 	if (player->hasMoved()) {
 		physics->collisionDetection(player);
 	}
+	if (player->hasAttacked()) {
+		physics->attackDetection(player->getAttack());
+	}
 
-	DebugActor::instance->addDebugString("Player x: %f y: %f",
-		player->getWorldX(), player->getWorldY());
+	std::map<int, spAttack> attacks = world->getAttacks();
+	for (std::map<int, spAttack>::iterator i = attacks.begin();
+		i != attacks.end(); ++i) {
+		physics->attackDetection(i->second);
+	}
+	world->clearAttacks();
+
 	redraw();
 }
