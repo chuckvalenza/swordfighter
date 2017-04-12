@@ -11,8 +11,8 @@
 
 #include "core_components/DrawableObj.h"
 #include "commands/Command.h"
-#include "items/Item.h"
-#include "items/items.h"
+#include "world/items/Item.h"
+#include "world/items/items.h"
 
 using namespace oxygine;
 

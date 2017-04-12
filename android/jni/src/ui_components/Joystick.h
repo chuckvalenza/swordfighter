@@ -11,7 +11,7 @@
 
 #include "core_components/DrawableObj.h"
 #include "commands/DirectionalCommand.h"
-#include "units/Unit.h"
+#include "world/units/Unit.h"
 
 using namespace oxygine;
 

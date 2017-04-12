@@ -6,7 +6,7 @@
  * model.
  */
 
-#include "DrawableObj.h"
+#include "core_components/DrawableObj.h"
 
 DrawableObj::DrawableObj()
 {

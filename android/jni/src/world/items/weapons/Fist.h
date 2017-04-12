@@ -7,7 +7,7 @@
 #ifndef SWORD_FIGHTER_FIST_H
 #define SWORD_FIGHTER_FIST_H
 
-#include "items/Wieldable.h"
+#include "world/items/Wieldable.h"
 
 class Fist : public Wieldable {
 	public:

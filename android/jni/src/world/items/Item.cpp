@@ -4,7 +4,7 @@
  * Description: Abstract class representing items.
  */
 
-#include "Item.h"
+#include "world/items/Item.h"
 
 Item::Item()
 {

@@ -4,7 +4,7 @@
  * Description: Wieldable class of objects
  */
 
-#include "Wieldable.h"
+#include "world/items/Wieldable.h"
 
 Wieldable::Wieldable()
 {

@@ -4,7 +4,7 @@
  * Description: Abstract base class for units
  */
 
-#include "units/Unit.h"
+#include "world/units/Unit.h"
 
 Unit::Unit()
 {

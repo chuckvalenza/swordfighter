@@ -11,9 +11,9 @@
 #include "oxygine-framework.h"
 
 #include "ui_components/HUD.h"
-#include "world/World.h"
 #include "core_components/Screen.h"
-#include "units/Player.h"
+#include "world/World.h"
+#include "world/units/Player.h"
 #include "physics/Physics.h"
 #include "physics/Attack.h"
 

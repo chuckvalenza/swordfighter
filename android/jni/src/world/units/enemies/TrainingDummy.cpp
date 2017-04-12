@@ -2,7 +2,7 @@
  * TrainingDummy.cpp
  */
 
-#include "units/enemies/TrainingDummy.h"
+#include "world/units/enemies/TrainingDummy.h"
 #define COLLISION_BOUNDS 70.0f
 
 TrainingDummy::TrainingDummy()

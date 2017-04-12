@@ -11,8 +11,8 @@
 
 #include "core_components/DrawableObj.h"
 #include "world/World.h"
-#include "units/Unit.h"
-#include "units/Player.h"
+#include "world/units/Unit.h"
+#include "world/units/Player.h"
 #include <map>
 
 using namespace oxygine;

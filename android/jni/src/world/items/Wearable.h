@@ -9,7 +9,7 @@
 
 #include "oxygine-framework.h"
 
-#include "items/Item.h"
+#include "world/items/Item.h"
 #include "core_components/DrawableObj.h"
 #include "core_components/res.h"
 

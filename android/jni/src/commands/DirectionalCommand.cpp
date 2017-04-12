@@ -4,7 +4,7 @@
  * Description: Command executed on player with specified direction
  */
 
-#include "DirectionalCommand.h"
+#include "commands/DirectionalCommand.h"
 
 DirectionalCommand::DirectionalCommand()
 {

@@ -9,7 +9,7 @@
 
 #include "oxygine-framework.h"
 
-#include "items/Item.h"
+#include "world/items/Item.h"
 
 using namespace oxygine;
 

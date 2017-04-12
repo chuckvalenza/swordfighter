@@ -4,7 +4,7 @@
  * Description: Class for the player character
  */
 
-#include "units/Player.h"
+#include "world/units/Player.h"
 #include <math.h>
 
 #define COLLISION_BOUNDS 57.5f

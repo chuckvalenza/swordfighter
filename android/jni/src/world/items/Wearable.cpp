@@ -4,7 +4,7 @@
  * Description: Class of items that are wearable
  */
 
-#include "Wearable.h"
+#include "world/items/Wearable.h"
 
 Wearable::Wearable()
 {

@@ -10,10 +10,10 @@
 #include "oxygine-framework.h"
 
 #include "commands/Command.h"
-#include "units/Player.h"
-#include "items/Item.h"
-#include "items/Wearable.h"
-#include "items/Wieldable.h"
+#include "world/units/Player.h"
+#include "world/items/Item.h"
+#include "world/items/Wearable.h"
+#include "world/items/Wieldable.h"
 
 using namespace oxygine;
 

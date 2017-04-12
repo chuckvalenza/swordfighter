@@ -9,10 +9,10 @@
 
 #include "oxygine-framework.h"
 
-#include "units/Unit.h"
-#include "items/items.h"
-#include "items/Wearable.h"
-#include "items/Wieldable.h"
+#include "world/units/Unit.h"
+#include "world/items/items.h"
+#include "world/items/Wearable.h"
+#include "world/items/Wieldable.h"
 #include <chrono>
 
 using namespace oxygine;

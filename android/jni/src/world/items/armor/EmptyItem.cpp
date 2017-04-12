@@ -4,7 +4,7 @@
  * Description: Empty item class
  */
 
-#include "EmptyItem.h"
+#include "world/items/armor/EmptyItem.h"
 
 EmptyItem::EmptyItem()
 {

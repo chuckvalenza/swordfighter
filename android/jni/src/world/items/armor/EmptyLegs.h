@@ -5,7 +5,7 @@
 #ifndef SWORD_FIGHTER_EMPTYLEGS_H
 #define SWORD_FIGHTER_EMPTYLEGS_H
 
-#include "items/Wearable.h"
+#include "world/items/Wearable.h"
 
 class EmptyLegs : public Wearable {
 	public:

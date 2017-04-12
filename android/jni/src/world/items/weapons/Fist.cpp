@@ -4,7 +4,7 @@
  * Description: Fist item class
  */
 
-#include "Fist.h"
+#include "world/items/weapons/Fist.h"
 
 Fist::Fist()
 {

@@ -2,7 +2,7 @@
 // Created by cvalenza on 2/17/17.
 //
 
-#include "EmptyTorso.h"
+#include "world/items/armor/EmptyTorso.h"
 
 EmptyTorso::EmptyTorso()
 {

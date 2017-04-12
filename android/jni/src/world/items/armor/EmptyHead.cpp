@@ -2,11 +2,11 @@
 // Created by cvalenza on 2/17/17.
 //
 
-#include "EmptyLegs.h"
+#include "world/items/armor/EmptyHead.h"
 
-EmptyLegs::EmptyLegs()
+EmptyHead::EmptyHead()
 {
-	item_type = Wearable::ItemType::PANTS;
+	item_type = Wearable::ItemType::HEADGEAR;
 	effect_type = Wearable::ItemEffect::NONE;
 	init("empty", Item::WEARABLE);
 }

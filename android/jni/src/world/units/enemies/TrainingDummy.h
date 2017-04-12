@@ -7,7 +7,7 @@
 
 #include "oxygine-framework.h"
 #include "core_components/res.h"
-#include "units/Unit.h"
+#include "world/units/Unit.h"
 #include "physics/Attack.h"
 
 DECLARE_SMART(TrainingDummy, spTrainingDummy);

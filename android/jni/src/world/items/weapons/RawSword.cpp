@@ -4,7 +4,7 @@
  * Description: Raw sword item class
  */
 
-#include "RawSword.h"
+#include "world/items/weapons/RawSword.h"
 
 RawSword::RawSword()
 {
