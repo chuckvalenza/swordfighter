@@ -2,7 +2,7 @@
 <resources>
     <set path="images/ui" />
     <atlas>
-        <image id="ui-empty" file="empty.png" />
+        <image id="ui-fist" file="empty.png" />
         <image id="ui-alt_sword" file="alt_sword.png" />
         <image id="ui-raw_sword" file="raw_sword.png" />
 

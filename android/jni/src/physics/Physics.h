@@ -11,8 +11,8 @@
 
 #include "core_components/DrawableObj.h"
 #include "world/World.h"
-#include "units/Unit.h"
-#include "units/Player.h"
+#include "world/units/Unit.h"
+#include "world/units/Player.h"
 #include <map>
 
 using namespace oxygine;
@@ -26,7 +26,8 @@ class Physics {
 
 		void setPlayer(spUnit);
 		void setWorld(World*);
-		void collisionDetection(spUnit);
+		void attackDetection(spAttack);
+		void collisionDetection(spRigid);
 };
 
 #endif //SWORD_FIGHTER_PHYSICS_H

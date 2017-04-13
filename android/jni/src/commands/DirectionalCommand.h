@@ -8,7 +8,7 @@
 #define SWORD_FIGHTER_DIRECTIONALCOMMAND_H
 
 #include "commands/Command.h"
-#include "units/Unit.h"
+#include "world/units/Unit.h"
 
 class DirectionalCommand : public Command {
 	protected:

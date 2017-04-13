@@ -5,9 +5,9 @@
  * used to load the menu.
  */
 
-#include "core_components/swordfighter.h"
-
 #include "oxygine-framework.h"
+
+#include "core_components/swordfighter.h"
 #include "core_components/res.h"
 #include "core_components/Game.h"
 

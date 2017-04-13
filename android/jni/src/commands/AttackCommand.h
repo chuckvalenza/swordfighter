@@ -10,7 +10,7 @@
 #include "oxygine-framework.h"
 
 #include "commands/DirectionalCommand.h"
-#include "units/Unit.h"
+#include "world/units/Unit.h"
 
 using namespace oxygine;
 

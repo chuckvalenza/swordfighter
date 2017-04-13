@@ -40,6 +40,7 @@ class DrawableObj : virtual public Object {
 		float getHeight();
 
 		void attachTo(spActor);
+		void detach();
 		virtual void redraw() = 0;
 		virtual void update(const UpdateState&) = 0;
 };

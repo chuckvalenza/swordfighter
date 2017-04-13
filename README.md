@@ -1,6 +1,6 @@
 # Swordfighter
 
-[![Travis](https://img.shields.io/badge/latest%20release-v0.01-brightgreen.svg)](https://github.com/chuckvalenza/swordfighter/releases/tag/v0.01)
+[![Travis](https://img.shields.io/badge/latest%20release-v0.02-brightgreen.svg)](https://github.com/chuckvalenza/swordfighter/releases/tag/v0.01)
 
 A simple top-down Android game about slashing your way out of problems.
 Currently a work in progress...pre-alpha with no releases yet.
@@ -25,11 +25,11 @@ For the most up-to-date version, checkout the 'dev' branch.
 
 ### v0.02 - Combat
 
-- [ ] Slash attack
-- [ ] Punch attack
-- [ ] Change attack animation depending on weildable type
-- [ ] Physics detection of attacks
-- [ ] Enemy damage
+- [x] Slash attack
+- [x] Punch attack
+- [x] Change attack animation depending on weildable type
+- [x] Physics detection of attacks
+- [x] Enemy damage
 
 ### v0.03 - Basic enemy AI
 

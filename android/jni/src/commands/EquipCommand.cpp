@@ -4,7 +4,7 @@
  * Description: Send an equip item command to the assigned unit
  */
 
-#include "EquipCommand.h"
+#include "commands/EquipCommand.h"
 
 EquipCommand::EquipCommand()
 {

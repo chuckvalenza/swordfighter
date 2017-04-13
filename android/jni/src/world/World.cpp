@@ -19,6 +19,10 @@ void World::init()
 	loadEnemies();
 }
 
+spSprite World::getView() {
+	return view;
+}
+
 void World::setScreen(Screen* s)
 {
 	screen = s;
@@ -61,7 +65,7 @@ void World::loadEnemies()
 	dummy->attachTo(view);
 	enemies.insert(std::pair<int, spUnit>(dummy->id(), dummy));
 	rigid_objs.insert(std::pair<int, spUnit>(dummy->id(), dummy));
-	addToChunks(dummy);
+	addEnemyToChunks(dummy);
 
 	dummy = new TrainingDummy;
 	dummy->init();
@@ -70,7 +74,7 @@ void World::loadEnemies()
 	dummy->attachTo(view);
 	enemies.insert(std::pair<int, spUnit>(dummy->id(), dummy));
 	rigid_objs.insert(std::pair<int, spUnit>(dummy->id(), dummy));
-	addToChunks(dummy);
+	addEnemyToChunks(dummy);
 
 	dummy = new TrainingDummy;
 	dummy->init();
@@ -79,7 +83,7 @@ void World::loadEnemies()
 	dummy->attachTo(view);
 	enemies.insert(std::pair<int, spUnit>(dummy->id(), dummy));
 	rigid_objs.insert(std::pair<int, spUnit>(dummy->id(), dummy));
-	addToChunks(dummy);
+	addEnemyToChunks(dummy);
 }
 
 /**
@@ -125,13 +129,34 @@ std::map<int, spRigid> World::getRigids()
 	return rigid_objs;
 }
 
-std::map<int, spRigid> World::getCollisionSet(spUnit obj)
+std::map<int, spAttack> World::getAttacks()
+{
+	return attack_objs;
+}
+
+std::map<int, spUnit> World::getLocalEnemies(spWorldObj obj)
+{
+	int x = obj->getWorldX() / chunk_size;
+	int y = obj->getWorldY() / chunk_size;
+	std::map<int, spUnit> en_set;
+
+	for (int xm = -1; xm <= 1; xm++) {
+		for (int ym = -1; ym <= 1; ym++) {
+			if (x > 0 && x < WORLD_WIDTH - 1 && y > 0 && y < WORLD_HEIGHT) {
+				std::map<int, spUnit> cur = world_chunks[x + xm][y + ym]->getEnemies();
+				en_set.insert(cur.begin(), cur.end());
+			}
+		}
+	}
+
+	return en_set;
+}
+
+std::map<int, spRigid> World::getCollisionSet(spRigid obj)
 {
 	int x = obj->getWorldX() / chunk_size;
 	int y = obj->getWorldY() / chunk_size;
 	std::map<int, spRigid> col_set;
-
-	DebugActor::instance->addDebugString("Chunk x: %d y: %d", x, y);
 
 	for (int xm = -1; xm <= 1; xm++) {
 		for (int ym = -1; ym <= 1; ym++) {
@@ -152,15 +177,23 @@ void World::redraw()
 	}
 }
 
-void World::addToChunks(spUnit obj)
+void World::addEnemyToChunks(spUnit obj)
 {
 	int cur_x = obj->getWorldX() / chunk_size;
 	int cur_y = obj->getWorldY() / chunk_size;
 
-	world_chunks[cur_x][cur_y]->addUnit(obj);
+	world_chunks[cur_x][cur_y]->addEnemy(obj);
 }
 
-void World::updateUnitChunk(spUnit obj)
+void World::removeEnemyFromChunks(spUnit obj)
+{
+	int cur_x = obj->getWorldX() / chunk_size;
+	int cur_y = obj->getWorldY() / chunk_size;
+
+	world_chunks[cur_x][cur_y]->removeEnemy(obj);
+}
+
+void World::updateEnemyChunk(spUnit obj)
 {
 	int cur_x = obj->getWorldX() / chunk_size;
 	int cur_y = obj->getWorldY() / chunk_size;
@@ -168,8 +201,37 @@ void World::updateUnitChunk(spUnit obj)
 	int next_y = obj->getWorldY() / chunk_size;
 
 	if (cur_x != next_x || cur_y != next_y) {
-		world_chunks[cur_x][cur_y]->removeUnit(obj);
-		world_chunks[next_x][next_y]->addUnit(obj);
+		world_chunks[cur_x][cur_y]->removeEnemy(obj);
+		world_chunks[next_x][next_y]->addEnemy(obj);
+	}
+}
+
+void World::addNPCToChunks(spUnit obj)
+{
+	int cur_x = obj->getWorldX() / chunk_size;
+	int cur_y = obj->getWorldY() / chunk_size;
+
+	world_chunks[cur_x][cur_y]->addNPC(obj);
+}
+
+void World::removeNPCFromChunks(spUnit obj)
+{
+	int cur_x = obj->getWorldX() / chunk_size;
+	int cur_y = obj->getWorldY() / chunk_size;
+
+	world_chunks[cur_x][cur_y]->removeNPC(obj);
+}
+
+void World::updateNPCChunk(spUnit obj)
+{
+	int cur_x = obj->getWorldX() / chunk_size;
+	int cur_y = obj->getWorldY() / chunk_size;
+	int next_x = obj->getWorldX() / chunk_size;
+	int next_y = obj->getWorldY() / chunk_size;
+
+	if (cur_x != next_x || cur_y != next_y) {
+		world_chunks[cur_x][cur_y]->removeNPC(obj);
+		world_chunks[next_x][next_y]->addNPC(obj);
 	}
 }
 
@@ -178,14 +240,34 @@ void World::clearMoved()
 	moved_objs.clear();
 }
 
+void World::clearAttacks()
+{
+	for (std::map<int, spAttack>::iterator i = attack_objs.begin();
+		i != attack_objs.end(); ++i) {
+		spAttack cur = i->second;
+		cur->detach();
+	}
+	attack_objs.clear();
+}
+
 void World::update(const UpdateState& us)
 {
 	for (std::map<int, spUnit>::iterator i = enemies.begin();
 		i != enemies.end(); ++i) {
 		spUnit cur = i->second;
 		cur->update(us);
-		if (cur->hasMoved()) {
-			moved_objs.insert(std::pair<int, spUnit>(cur->id(), cur));
+		if (cur->getHealth() <= 0.0f) {
+			enemies.erase(cur->id());
+			rigid_objs.erase(cur->id());
+			removeEnemyFromChunks(cur);
+		} else {
+			if (cur->hasMoved()) {
+				moved_objs.insert(std::pair<int, spUnit>(cur->id(), cur));
+			}
+			if (cur->hasAttacked()) {
+				spAttack nAtk = cur->getAttack();
+				attack_objs.insert(std::pair<int, spAttack>(nAtk->id(), nAtk));
+			}
 		}
 	}
 }

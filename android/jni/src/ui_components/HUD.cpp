@@ -9,9 +9,9 @@
 #include "commands/MoveCommand.h"
 #include "commands/AttackCommand.h"
 #include "commands/EquipCommand.h"
-#include "units/Unit.h"
-#include "items/Item.h"
-#include "items/items.h"
+#include "world/units/Unit.h"
+#include "world/items/Item.h"
+#include "world/items/items.h"
 
 HUD::HUD()
 {
