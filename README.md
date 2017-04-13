@@ -25,7 +25,7 @@ For the most up-to-date version, checkout the 'dev' branch.
 
 - [x] Slash attack
 - [x] Punch attack
-- [ ] Change attack animation depending on weildable type
+- [x] Change attack animation depending on weildable type
 - [x] Physics detection of attacks
 - [x] Enemy damage
 

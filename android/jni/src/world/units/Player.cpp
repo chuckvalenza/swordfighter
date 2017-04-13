@@ -99,7 +99,7 @@ spAttack Player::attack(float angle)
 		attacked = false;
 		if (atk_type == Wieldable::ItemType::SLASH) {
 			std::string chestpiece_str = chestpiece->equippedStr();
-			torso->addTween(TweenAnim(res::r.getResAnim(chestpiece_str), 1, 4), ms);
+			torso->addTween(TweenAnim(res::r.getResAnim(chestpiece_str), 5, 8), ms);
 
 			std::string rhi_str = rh_item->equippedStr() + "-rh";
 			right_hand->addTween(TweenAnim(res::r.getResAnim(rhi_str), 1, 4), ms);
