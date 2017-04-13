@@ -1,5 +1,7 @@
 # Swordfighter
 
+[![Travis](https://img.shields.io/badge/latest%20release-v0.02-brightgreen.svg)](https://github.com/chuckvalenza/swordfighter/releases/tag/v0.01)
+
 A simple top-down Android game about slashing your way out of problems.
 Currently a work in progress...pre-alpha with no releases yet.
 
