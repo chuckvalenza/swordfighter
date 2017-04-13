@@ -23,11 +23,11 @@ For the most up-to-date version, checkout the 'dev' branch.
 
 ### v0.02 - Combat
 
-- [ ] Slash attack
-- [ ] Punch attack
+- [x] Slash attack
+- [x] Punch attack
 - [ ] Change attack animation depending on weildable type
-- [ ] Physics detection of attacks
-- [ ] Enemy damage
+- [x] Physics detection of attacks
+- [x] Enemy damage
 
 ### v0.03 - Basic enemy AI
 
