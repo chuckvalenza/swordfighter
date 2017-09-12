@@ -39,18 +39,28 @@ For the most up-to-date version, checkout the 'dev' branch.
 - [ ] Enemies can sense player without provocation if player is close enough and they are looking in the player's direction
 - [ ] Enemies can sense player without provocation if player is close enough and moving quickly enough (they hear the player)
 
-### v0.04 - Sound
+### v0.04 - Projectiles
+
+- [ ] Projectile weapon for the player
+- [ ] Projectile weapon for the enemy
+
+### v0.05 - Basic friendly AI
+
+- [ ] Turret friendly AI
+- [ ] Make turret a deployable item
+
+### v0.05 - Equipment menu to change player gear
+
+- [ ] Multiple different player armors and weapons (already placed in inventory)
+...
+
+### v0.06 - Sound
 
 - [ ] Walking sound on player movement
 - [ ] Walking sound on enemy movement
 - [ ] Wooshing sound on slash through air
 - [ ] Slicing sound on slash through enemy
 - [ ] Different sound dependent on rigid the attack makes contact with
-
-### v0.05 - Equipment menu to change player gear
-
-- [ ] Multiple different player armors and weapons (already placed in inventory)
-...
 
 ### v0.0? - Basic seed-based world generation
 
