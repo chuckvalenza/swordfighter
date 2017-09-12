@@ -42,13 +42,15 @@ bool Unit::hasAttacked()
 	return false;
 }
 
-float Unit::takeDamage(float damage)
+float Unit::takeDamage(float damage, spAttack en_atk)
 {
 	health -= damage;
 
 	if (health < 0) {
 		health = 0;
 	}
+
+	recent_threat = en_atk;
 
 	return health;
 }

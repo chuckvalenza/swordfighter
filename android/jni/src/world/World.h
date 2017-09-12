@@ -18,7 +18,7 @@
 #include "core_components/DrawableObj.h"
 #include "world/Terrain.h"
 #include "world/WorldChunk.h"
-#include "units/enemies/TrainingDummy.h"
+#include "world/units/ai/enemy/TrainingDummy.h"
 
 using namespace oxygine;
 
@@ -29,6 +29,7 @@ class World : public DrawableObj {
 		WorldChunk* world_chunks[WORLD_WIDTH][WORLD_HEIGHT];
 		float chunk_size;
 
+		std::map<int, spUnit> units;
 		std::map<int, spUnit> enemies;
 		std::map<int, spUnit> moved_objs;
 		std::map<int, spRigid> rigid_objs;
@@ -49,11 +50,13 @@ class World : public DrawableObj {
 		void removeNPCFromChunks(spUnit obj);
 		void updateEnemyChunk(spUnit obj);
 		void updateNPCChunk(spUnit obj);
+		spUnit getUnit(int);
 		std::map<int, spUnit> getMoved();
 		std::map<int, spRigid> getRigids();
 		std::map<int, spAttack> getAttacks();
 		std::map<int, spUnit> getLocalEnemies(spWorldObj obj);
 		std::map<int, spRigid> getCollisionSet(spRigid obj);
+		std::map<int, spAttack> getLocalAttacks(spWorldObj obj);
 		void clearMoved();
 		void clearAttacks();
 		void redraw();

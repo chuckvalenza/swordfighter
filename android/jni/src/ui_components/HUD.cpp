@@ -29,6 +29,7 @@ void HUD::init(spUnit player, World* world)
 	float center_h = screen->getHeight() / 2.0f;
 
 	view = new Sprite;
+	view->setAlpha(0xbb);
 
 	left_joy->setY(center_h - left_joy->getHeight());
 	left_joy->setX(right_joy->getWidth() * 0.25f);

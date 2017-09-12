@@ -20,6 +20,8 @@ class Attack : public WorldObj {
 	private:
 		float damage;
 		float collision_bounds;
+		int perp_id;
+		Vector2 perp_loc; // actor who created this attack
 	public:
 		Attack();
 		~Attack();
@@ -28,9 +30,11 @@ class Attack : public WorldObj {
 		void redraw();
 		void update(const UpdateState&);
 
-		void init(float, float);
+		void init(Vector2, int, float, float);
 		float getCBounds();
 		float getDamage();
+		int getPerpId();
+		Vector2 getPerpLoc();
 };
 
 #endif //SWORD_FIGHTER_ATTACK_H

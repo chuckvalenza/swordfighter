@@ -20,6 +20,7 @@ DECLARE_SMART(Unit, spUnit);
 class Unit : public Rigid {
 	protected:
 		float health;
+		float prev_health;
 		bool moved;
 		bool attacked;
 
@@ -31,6 +32,13 @@ class Unit : public Rigid {
 
 		AttackState atk_state;
 
+		enum AlertState {
+			PASSIVE,
+			ALERT
+		};
+
+		AlertState alert_state;
+
 		float atk_radius;
 		spAttack atk;
 
@@ -39,6 +47,8 @@ class Unit : public Rigid {
 		spSprite legs;
 
 		std::vector<spUnit>* collision_set;
+
+		spAttack recent_threat;
 	public:
 		Unit();
 		~Unit();
@@ -54,7 +64,7 @@ class Unit : public Rigid {
 		bool hasMoved();
 		void unsetMoved();
 		bool hasAttacked();
-		float takeDamage(float);
+		float takeDamage(float, spAttack);
 		float getHealth();
 		spAttack getAttack();
 };

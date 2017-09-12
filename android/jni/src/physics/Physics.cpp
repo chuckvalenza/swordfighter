@@ -43,7 +43,7 @@ void Physics::attackDetection(spAttack u1)
 		float dist = hypot(a_x - b_x, a_y - b_y);
 
 		if (dist < u1->getCBounds() + u2->getCBounds()) {
-			log::error("HEALTH %f", u2->takeDamage(u1->getDamage()));
+			u2->takeDamage(u1->getDamage(), u1);
 		}
 	}
 }

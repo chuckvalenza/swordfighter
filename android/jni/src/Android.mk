@@ -12,6 +12,7 @@ FILE_LIST += $(wildcard $(LOCAL_PATH)/commands/*.cpp)
 FILE_LIST += $(wildcard $(LOCAL_PATH)/world/*.cpp)
 FILE_LIST += $(wildcard $(LOCAL_PATH)/world/*/*.cpp)
 FILE_LIST += $(wildcard $(LOCAL_PATH)/world/*/*/*.cpp)
+FILE_LIST += $(wildcard $(LOCAL_PATH)/world/*/*/*/*.cpp)
 FILE_LIST += $(wildcard $(LOCAL_PATH)/ui_components/*.cpp)
 
 LOCAL_SRC_FILES += $(FILE_LIST:$(LOCAL_PATH)/%=%)

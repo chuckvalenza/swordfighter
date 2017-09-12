@@ -23,7 +23,7 @@ void WorldChunk::generateTerrain(int seed)
 	for (int y = 0; y < CHUNK_HEIGHT; y++) {
 		for (int x = 0; x < CHUNK_WIDTH; x++) {
 			ground_tiles[x][y] = new Terrain;
-			if (y % 3 == 0 || x % 3 == 0) {
+			if (y % 6 == 0 || x % 6 == 0) {
 				ground_tiles[x][y]->init(1.0, "world-dirt");
 			} else {
 				ground_tiles[x][y]->init(0.9, "world-grass");
@@ -63,6 +63,16 @@ void WorldChunk::removeEnemy(spUnit obj)
 	rigids.erase(obj->id());
 }
 
+void WorldChunk::addAttack(spAttack obj)
+{
+	attacks.insert(std::pair<int, spAttack>(obj->id(), obj));
+}
+
+void WorldChunk::removeAttack(spAttack obj)
+{
+	attacks.erase(obj->id());
+}
+
 std::map<int, spRigid> WorldChunk::getRigids()
 {
 	return rigids;
@@ -71,6 +81,11 @@ std::map<int, spRigid> WorldChunk::getRigids()
 std::map<int, spUnit> WorldChunk::getEnemies()
 {
 	return tracked_enemies;
+}
+
+std::map<int, spAttack> WorldChunk::getAttacks()
+{
+	return attacks;
 }
 
 void WorldChunk::redraw()

@@ -13,7 +13,8 @@
 #include <map>
 #include "core_components/DrawableObj.h"
 #include "world/Terrain.h"
-#include "units/enemies/TrainingDummy.h"
+#include "world/units/ai/enemy/TrainingDummy.h"
+#include "physics/Attack.h"
 
 #define CHUNK_WIDTH 16
 #define CHUNK_HEIGHT 16
@@ -29,6 +30,7 @@ class WorldChunk : public DrawableObj {
 		std::map<int, spUnit> tracked_NPCs;
 		std::map<int, spUnit> tracked_enemies;
 		std::map<int, spRigid> rigids;
+		std::map<int, spAttack> attacks;
 
 		void generateTerrain(int);
 	public:
@@ -37,12 +39,15 @@ class WorldChunk : public DrawableObj {
 		void init(int);
 		void addNPC(spUnit);
 		void addEnemy(spUnit);
+		void addAttack(spAttack);
 		void removeNPC(spUnit);
 		void removeEnemy(spUnit);
+		void removeAttack(spAttack);
 		void addToCollisionSet(spUnit);
 		void addToCollisionSet(std::map<int, spUnit>);
 		std::map<int, spRigid> getRigids();
 		std::map<int, spUnit> getEnemies();
+		std::map<int, spAttack> getAttacks();
 
 		void redraw();
 		void update(const UpdateState&);

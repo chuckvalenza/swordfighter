@@ -7,12 +7,12 @@
 
 #include "oxygine-framework.h"
 #include "core_components/res.h"
-#include "world/units/Unit.h"
+#include "world/units/ai/AI.h"
 #include "physics/Attack.h"
 
 DECLARE_SMART(TrainingDummy, spTrainingDummy);
 
-class TrainingDummy : public Unit {
+class TrainingDummy : public AI {
 	private:
 	public:
 		TrainingDummy();
@@ -22,6 +22,7 @@ class TrainingDummy : public Unit {
 		void stopAttack();
 		float getMoveMultiplier();
 		float getCBounds();
+		void makeDecision();
 		void redraw();
 		void update(const UpdateState&);
 };

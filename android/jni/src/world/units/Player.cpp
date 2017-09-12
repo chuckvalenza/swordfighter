@@ -18,7 +18,7 @@ Player::Player()
 void Player::init()
 {
 	obj_id = 0;
-	health = 100;
+	health = prev_health = 100;
 
 	collision_bounds = COLLISION_BOUNDS;
 
@@ -119,7 +119,7 @@ spAttack Player::attack(float angle)
 		atk = new Attack();
 		float x_offset = (atk_radius + rh_item->getSize()) * cos(angle);
 		float y_offset = (atk_radius + rh_item->getSize()) * sin(angle);
-		atk->init(rh_item->getSize(), rh_item->getDamage());
+		atk->init(world_coords, obj_id, rh_item->getSize(), rh_item->getDamage());
 		atk->setX(getWorldX() + x_offset);
 		atk->setY(getWorldY() + y_offset);
 	} else if (atk_state == ATTACKING) {

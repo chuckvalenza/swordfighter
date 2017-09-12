@@ -60,6 +60,7 @@ void World::loadEnemies()
 {
 	spTrainingDummy dummy = new TrainingDummy;
 	dummy->init();
+	dummy->setWorld(this);
 	dummy->setPosition(view->getSize() / 2);
 	dummy->setY(dummy->getY() - 400);
 	dummy->attachTo(view);
@@ -69,6 +70,7 @@ void World::loadEnemies()
 
 	dummy = new TrainingDummy;
 	dummy->init();
+	dummy->setWorld(this);
 	dummy->setPosition(view->getSize() / 2);
 	dummy->setX(dummy->getX() - 400);
 	dummy->attachTo(view);
@@ -78,6 +80,7 @@ void World::loadEnemies()
 
 	dummy = new TrainingDummy;
 	dummy->init();
+	dummy->setWorld(this);
 	dummy->setPosition(view->getSize() / 2);
 	dummy->setX(dummy->getX() + 400);
 	dummy->attachTo(view);
@@ -117,6 +120,11 @@ void World::loadChests()
 void World::loadShops()
 {
 
+}
+
+spUnit World::getUnit(int id)
+{
+	return units.at(id);
 }
 
 std::map<int, spUnit> World::getMoved()
@@ -168,6 +176,24 @@ std::map<int, spRigid> World::getCollisionSet(spRigid obj)
 	}
 
 	return col_set;
+}
+
+std::map<int, spAttack> World::getLocalAttacks(spWorldObj obj)
+{
+	int x = obj->getWorldX() / chunk_size;
+	int y = obj->getWorldY() / chunk_size;
+	std::map<int, spAttack> atk_set;
+
+	for (int xm = -1; xm <= 1; xm++) {
+		for (int ym = -1; ym <= 1; ym++) {
+			if (x > 0 && x < WORLD_WIDTH - 1 && y > 0 && y < WORLD_HEIGHT) {
+				std::map<int, spAttack> cur = world_chunks[x + xm][y + ym]->getAttacks();
+				atk_set.insert(cur.begin(), cur.end());
+			}
+		}
+	}
+
+	return atk_set;
 }
 
 void World::redraw()
