@@ -52,6 +52,7 @@ void Game::createPlayer()
 	player->attachTo(this);
 	player->setPriority(500);
 	units.push_back(player);
+	world->setPlayer(player);
 }
 
 void Game::createHUD()

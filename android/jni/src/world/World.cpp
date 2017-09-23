@@ -5,6 +5,8 @@
  */
 
 #include "world/World.h"
+#include "world/Terrain.h"
+#include "world/units/ai/enemy/TrainingDummy.h"
 
 World::World()
 {
@@ -26,6 +28,11 @@ spSprite World::getView() {
 void World::setScreen(Screen* s)
 {
 	screen = s;
+}
+
+void World::setPlayer(spUnit player)
+{
+	units.insert(std::pair<int, spUnit>(0, player));
 }
 
 /**
@@ -64,6 +71,7 @@ void World::loadEnemies()
 	dummy->setPosition(view->getSize() / 2);
 	dummy->setY(dummy->getY() - 400);
 	dummy->attachTo(view);
+	units.insert(std::pair<int, spUnit>(dummy->id(), dummy));
 	enemies.insert(std::pair<int, spUnit>(dummy->id(), dummy));
 	rigid_objs.insert(std::pair<int, spUnit>(dummy->id(), dummy));
 	addEnemyToChunks(dummy);
@@ -74,6 +82,7 @@ void World::loadEnemies()
 	dummy->setPosition(view->getSize() / 2);
 	dummy->setX(dummy->getX() - 400);
 	dummy->attachTo(view);
+	units.insert(std::pair<int, spUnit>(dummy->id(), dummy));
 	enemies.insert(std::pair<int, spUnit>(dummy->id(), dummy));
 	rigid_objs.insert(std::pair<int, spUnit>(dummy->id(), dummy));
 	addEnemyToChunks(dummy);
@@ -84,6 +93,7 @@ void World::loadEnemies()
 	dummy->setPosition(view->getSize() / 2);
 	dummy->setX(dummy->getX() + 400);
 	dummy->attachTo(view);
+	units.insert(std::pair<int, spUnit>(dummy->id(), dummy));
 	enemies.insert(std::pair<int, spUnit>(dummy->id(), dummy));
 	rigid_objs.insert(std::pair<int, spUnit>(dummy->id(), dummy));
 	addEnemyToChunks(dummy);

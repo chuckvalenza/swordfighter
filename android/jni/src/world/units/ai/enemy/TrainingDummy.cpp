@@ -7,14 +7,16 @@
 
 TrainingDummy::TrainingDummy()
 {
-
+	//set up state machine
+	state_machine = new UnitStateMachine<TrainingDummy>(this);
+	state_machine->setCurrentUnitState(Patrol::Instance());
+	//state_machine->setGlobalUnitState(UnitGlobalState::Instance());
 }
 
 void TrainingDummy::init()
 {
 	Unit::init();
 	health = prev_health = 100;
-	alert_state = PASSIVE;
 
 	collision_bounds = COLLISION_BOUNDS;
 
@@ -48,46 +50,19 @@ float TrainingDummy::getMoveMultiplier()
 	return 0;
 }
 
-void TrainingDummy::makeDecision()
+bool TrainingDummy::healthLost()
 {
-	// AI need perception. They need to see/hear/feel; start with feel
-	if (health < prev_health) {
-		// react to feeling the attack;
-		// direction of the attack with respect to the enemy
-		// discern who it was from and add that enemy to the list of tracked enemies.
-		// if multiple attacks, select attack which caused most damage out of intersecting attacks;
-		//   keep a copy of the highest damage and compare
-		Vector2 atk_loc = recent_threat->getWorldCoords();
-		Vector2 en_pos = recent_threat->getPerpLoc();
-		// create a copy of the perp somehow
-		Vector2 dir = en_pos - world_coords;
-		float angle = atan2f(dir.y, dir.x);
+	return (health < prev_health);
+}
 
-		if (angle >= -3 && angle <= 1.5) {
-			angle += M_PI / 2;
-		} else {
-			angle -= 1.5f * M_PI;
-		}
-		angle -= M_PI;
-		view->setRotation(angle);
+int TrainingDummy::getThreatId()
+{
+	return recent_threat->getPerpId();
+}
 
-
-		alert_state = ALERT;
-	} else if(alert_state == ALERT) {
-	// need to create a copy of the target in the block above and rotate in this block
-		Vector2 atk_loc = recent_threat->getWorldCoords();
-		Vector2 en_pos = target->getWorldCoords();
-		Vector2 dir = en_pos - world_coords;
-		float angle = atan2f(dir.y, dir.x);
-
-		if (angle >= -3 && angle <= 1.5) {
-			angle += M_PI / 2;
-		} else {
-			angle -= 1.5f * M_PI;
-		}
-		angle -= M_PI;
-		view->setRotation(angle);
-	}
+UnitStateMachine<TrainingDummy>* TrainingDummy::getSM()
+{
+	return state_machine;
 }
 
 void TrainingDummy::redraw()
@@ -99,5 +74,5 @@ void TrainingDummy::redraw()
 
 void TrainingDummy::update(const UpdateState& us)
 {
-	makeDecision();
+	state_machine->update();
 }

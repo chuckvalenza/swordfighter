@@ -17,6 +17,8 @@ using namespace oxygine;
 
 DECLARE_SMART(Unit, spUnit);
 
+class World;
+
 class Unit : public Rigid {
 	protected:
 		float health;
@@ -32,13 +34,6 @@ class Unit : public Rigid {
 
 		AttackState atk_state;
 
-		enum AlertState {
-			PASSIVE,
-			ALERT
-		};
-
-		AlertState alert_state;
-
 		float atk_radius;
 		spAttack atk;
 
@@ -49,6 +44,9 @@ class Unit : public Rigid {
 		std::vector<spUnit>* collision_set;
 
 		spAttack recent_threat;
+		int recent_threat_id;
+
+		World* world;
 	public:
 		Unit();
 		~Unit();
@@ -61,12 +59,14 @@ class Unit : public Rigid {
 		virtual void redraw() {};
 		virtual void update(const UpdateState& us) {}
 
+		void setWorld(World*);
 		bool hasMoved();
 		void unsetMoved();
 		bool hasAttacked();
 		float takeDamage(float, spAttack);
 		float getHealth();
 		spAttack getAttack();
+		World* getWorld();
 };
 
 #endif //SWORD_FIGHTER_UNIT_H

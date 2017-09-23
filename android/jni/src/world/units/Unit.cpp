@@ -4,6 +4,7 @@
  * Description: Abstract base class for units
  */
 
+#include "world/World.h"
 #include "world/units/Unit.h"
 
 Unit::Unit()
@@ -51,6 +52,7 @@ float Unit::takeDamage(float damage, spAttack en_atk)
 	}
 
 	recent_threat = en_atk;
+	recent_threat_id = en_atk->getPerpId();
 
 	return health;
 }
@@ -63,4 +65,14 @@ float Unit::getHealth()
 spAttack Unit::getAttack()
 {
 	return atk;
+}
+
+void Unit::setWorld(World* w)
+{
+	world = w;
+}
+
+World* Unit::getWorld()
+{
+	return world;
 }

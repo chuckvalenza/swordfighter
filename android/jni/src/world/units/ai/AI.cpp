@@ -1,6 +1,8 @@
-//
-// Created by cvalenza on 8/6/17.
-//
+/**
+ * AI.cpp
+ *
+ * description: AI Base class
+ */
 
 #include "AI.h"
 

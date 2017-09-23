@@ -16,9 +16,7 @@
 #include <map>
 #include "core_components/Screen.h"
 #include "core_components/DrawableObj.h"
-#include "world/Terrain.h"
 #include "world/WorldChunk.h"
-#include "world/units/ai/enemy/TrainingDummy.h"
 
 using namespace oxygine;
 
@@ -38,6 +36,7 @@ class World : public DrawableObj {
 		World();
 		void init();
 		void setScreen(Screen*);
+		void setPlayer(spUnit);
 		void loadTerrain();
 		void loadEnemies();
 		void loadNPCs();

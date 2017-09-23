@@ -13,7 +13,7 @@
 #include <map>
 #include "core_components/DrawableObj.h"
 #include "world/Terrain.h"
-#include "world/units/ai/enemy/TrainingDummy.h"
+#include "world/units/Unit.h"
 #include "physics/Attack.h"
 
 #define CHUNK_WIDTH 16

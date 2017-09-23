@@ -1,6 +1,8 @@
-//
-// Created by cvalenza on 8/6/17.
-//
+/**
+ * AI.h
+ *
+ * description: AI Base class
+ */
 
 #ifndef SWORD_FIGHTER_AI_H
 #define SWORD_FIGHTER_AI_H
@@ -20,7 +22,9 @@ class AI : public Unit {
 	public:
 		AI();
 
-		virtual void makeDecision() = 0;
+		void addKnownUnit(spUnit new_unit);
+		void addFriendlyUnit(spUnit new_unit);
+		void addEnemyUnit(spUnit new_unit);
 };
 
 #endif //SWORD_FIGHTER_AI_H
