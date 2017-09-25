@@ -25,8 +25,6 @@ class TrainingDummy : public AI {
 		void stopAttack();
 		float getMoveMultiplier();
 		float getCBounds();
-		bool healthLost();
-		int getThreatId();
 		UnitStateMachine<TrainingDummy>* getSM();
 		void redraw();
 		void update(const UpdateState&);

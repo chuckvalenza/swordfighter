@@ -50,16 +50,6 @@ float TrainingDummy::getMoveMultiplier()
 	return 0;
 }
 
-bool TrainingDummy::healthLost()
-{
-	return (health < prev_health);
-}
-
-int TrainingDummy::getThreatId()
-{
-	return recent_threat->getPerpId();
-}
-
 UnitStateMachine<TrainingDummy>* TrainingDummy::getSM()
 {
 	return state_machine;

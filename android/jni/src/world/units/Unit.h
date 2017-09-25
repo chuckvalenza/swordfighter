@@ -65,6 +65,8 @@ class Unit : public Rigid {
 		float getHealth();
 		spAttack getAttack();
 		World* getWorld();
+		bool healthLost();
+		int getThreatId();
 };
 
 #endif //SWORD_FIGHTER_UNIT_H

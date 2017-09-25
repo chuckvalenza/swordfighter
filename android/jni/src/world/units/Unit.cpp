@@ -76,3 +76,13 @@ World* Unit::getWorld()
 {
 	return world;
 }
+
+bool Unit::healthLost()
+{
+	return (health < prev_health);
+}
+
+int Unit::getThreatId()
+{
+	return recent_threat_id;
+}
