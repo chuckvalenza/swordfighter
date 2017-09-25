@@ -18,13 +18,12 @@ class AI : public Unit {
 		std::map<int, spUnit> friendly_units;
 		std::map<int, spUnit> enemy_units;
 		spUnit target;
-		int target_id;
 	public:
 		AI();
 
-		void addKnownUnit(spUnit new_unit);
-		void addFriendlyUnit(spUnit new_unit);
-		void addEnemyUnit(spUnit new_unit);
+		void addKnownUnit(spUnit);
+		void addFriendlyUnit(spUnit);
+		void addEnemyUnit(spUnit);
 };
 
 #endif //SWORD_FIGHTER_AI_H

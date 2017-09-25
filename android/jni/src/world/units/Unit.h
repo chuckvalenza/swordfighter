@@ -41,8 +41,6 @@ class Unit : public Rigid {
 		spSprite torso;
 		spSprite legs;
 
-		std::vector<spUnit>* collision_set;
-
 		spAttack recent_threat;
 		int recent_threat_id;
 
@@ -56,7 +54,7 @@ class Unit : public Rigid {
 		virtual void move(float) = 0;
 		virtual void stopAttack() = 0;
 		virtual float getMoveMultiplier() = 0;
-		virtual void redraw() {};
+		virtual void redraw() {}
 		virtual void update(const UpdateState& us) {}
 
 		void setWorld(World*);
