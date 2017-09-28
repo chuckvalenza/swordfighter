@@ -27,7 +27,7 @@ For the most up-to-date version, checkout the 'dev' branch.
 
 - [x] Slash attack
 - [x] Punch attack
-- [x] Change attack animation depending on weildable type
+- [x] Change attack animation depending on wieldable type
 - [x] Physics detection of attacks
 - [x] Enemy damage
 
@@ -58,7 +58,7 @@ For the most up-to-date version, checkout the 'dev' branch.
 
 - [ ] Walking sound on player movement
 - [ ] Walking sound on enemy movement
-- [ ] Wooshing sound on slash through air
+- [ ] Whooshing sound on slash through air
 - [ ] Slicing sound on slash through enemy
 - [ ] Different sound dependent on rigid the attack makes contact with
 
