@@ -12,6 +12,7 @@
 #include "physics/Rigid.h"
 #include "physics/Attack.h"
 #include <map>
+#include <chrono>
 
 using namespace oxygine;
 
@@ -25,6 +26,7 @@ class Unit : public Rigid {
 		float prev_health;
 		bool moved;
 		bool attacked;
+		std::chrono::milliseconds atk_anim_timer;
 
 		enum AttackState {
 			NOT_ATTACKED,
@@ -39,6 +41,8 @@ class Unit : public Rigid {
 
 		spSprite head;
 		spSprite torso;
+		spSprite left_hand;
+		spSprite right_hand;
 		spSprite legs;
 
 		spAttack recent_threat;
@@ -52,21 +56,23 @@ class Unit : public Rigid {
 		virtual void init();
 		virtual spAttack attack(float) = 0;
 		virtual void move(float) = 0;
+		virtual void animStand() = 0;
+		virtual void animMove() = 0;
 		virtual void stopAttack() = 0;
 		virtual float getMoveMultiplier() = 0;
 		virtual void redraw() {}
 		virtual void update(const UpdateState& us) {}
 
 		void setWorld(World*);
-		bool hasMoved();
 		void unsetMoved();
+		bool hasMoved();
 		bool hasAttacked();
+		bool healthLost();
 		float takeDamage(float, spAttack);
 		float getHealth();
+		int getThreatId();
 		spAttack getAttack();
 		World* getWorld();
-		bool healthLost();
-		int getThreatId();
 };
 
 #endif //SWORD_FIGHTER_UNIT_H

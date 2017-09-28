@@ -31,6 +31,6 @@ void EquipCommand::execute()
 	if (item->type == Item::WIELDABLE) {
 		player->setRHItem(safeSpCast<Wieldable>(item));
 	} else if (item->type == Item::WEARABLE) {
-		player->setTorso(safeSpCast<Wearable>(item));
+		player->setChestpiece(safeSpCast<Wearable>(item));
 	}
 }

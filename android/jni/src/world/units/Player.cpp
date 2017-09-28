@@ -9,10 +9,18 @@
 
 #define COLLISION_BOUNDS 57.5f
 #define PLAYER_ATK_RADIUS 125;
+#define ATK_PENALTY 0.7f
 
 Player::Player()
 {
+	move_state = new UnitStateMachine<Player>(this);
+	move_state->setCurrentUnitState(PlayerStand::Instance());
 
+	rh_state = new UnitStateMachine<Player>(this);
+	rh_state->setCurrentUnitState(PlayerPassive::Instance());
+
+	lh_state = new UnitStateMachine<Player>(this);
+	lh_state->setCurrentUnitState(PlayerPassive::Instance());
 }
 
 void Player::init()
@@ -28,7 +36,7 @@ void Player::init()
 	chestpiece = new EmptyTorso;
 	torso = new Sprite;
 	torso->attachTo(view);
-	setTorso(chestpiece);
+	setChestpiece(chestpiece);
 
 	rh_item = new Fist;
 	right_hand = new Sprite;
@@ -60,7 +68,7 @@ void Player::setHeadgear(spWearable new_item)
 	head->addTween(TweenAnim(res::r.getResAnim(str), 0, 0), 1);
 }
 
-void Player::setTorso(spWearable new_item)
+void Player::setChestpiece(spWearable new_item)
 {
 	chestpiece = new_item;
 	std::string str = chestpiece->equippedStr();
@@ -74,6 +82,22 @@ void Player::setRHItem(spWieldable new_item)
 	std::string str = rh_item->equippedStr() + "-rh";
 	right_hand->removeTweens();
 	right_hand->addTween(TweenAnim(res::r.getResAnim(str), 0, 0), 1);
+}
+
+void Player::setLHItem(spWieldable new_item)
+{
+	lh_item = new_item;
+	std::string str = lh_item->equippedStr() + "-lh";
+	left_hand->removeTweens();
+	left_hand->addTween(TweenAnim(res::r.getResAnim(str), 0, 0), 1);
+}
+
+void Player::setPants(spWearable new_item)
+{
+	pants = new_item;
+	std::string str = pants->equippedStr();
+	legs->removeTweens();
+	legs->addTween(TweenAnim(res::r.getResAnim(str), 0, 0), 1);
 }
 
 spAttack Player::attack(float angle)
@@ -147,6 +171,16 @@ void Player::move(float angle)
 	}
 }
 
+void Player::animStand()
+{
+
+}
+
+void Player::animMove()
+{
+
+}
+
 float Player::getMoveMultiplier()
 {
 	if(atk_type == Wieldable::ItemType::NONE) {
@@ -154,6 +188,21 @@ float Player::getMoveMultiplier()
 	}
 
 	return ATK_PENALTY;
+}
+
+UnitStateMachine<Player>* Player::getMoveState()
+{
+	return move_state;
+}
+
+UnitStateMachine<Player>* Player::getRHState()
+{
+	return rh_state;
+}
+
+UnitStateMachine<Player>* Player::getLHState()
+{
+	return lh_state;
 }
 
 void Player::redraw()

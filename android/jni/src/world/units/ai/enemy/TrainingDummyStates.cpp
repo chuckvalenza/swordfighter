@@ -8,55 +8,55 @@
 #include "world/units/ai/enemy/TrainingDummy.h"
 #include "world/World.h"
 
-/*================================= Patrol =================================*/
+/*================================= TrainingDummyPatrol =================================*/
 
-Patrol::Patrol()
+TrainingDummyPatrol::TrainingDummyPatrol()
 {
 
 }
 
-Patrol* Patrol::Instance()
+TrainingDummyPatrol* TrainingDummyPatrol::Instance()
 {
-	static Patrol instance;
+	static TrainingDummyPatrol instance;
 	return &instance;
 }
 
-void Patrol::enter(TrainingDummy* t)
+void TrainingDummyPatrol::enter(TrainingDummy* t)
 {
 
 }
 
-void Patrol::execute(TrainingDummy* t)
+void TrainingDummyPatrol::execute(TrainingDummy* t)
 {
 	if (t->healthLost()) {
-		t->getSM()->changeState(PursueEnemy::Instance());
+		t->getSM()->changeState(TrainingDummyPursueEnemy::Instance());
 	}
 }
 
-void Patrol::exit(TrainingDummy* t)
+void TrainingDummyPatrol::exit(TrainingDummy* t)
 {
 
 }
 
-/*=============================== PursueEnemy ==============================*/
+/*=============================== TrainingDummyPursueEnemy ==============================*/
 
-PursueEnemy::PursueEnemy()
+TrainingDummyPursueEnemy::TrainingDummyPursueEnemy()
 {
 
 }
 
-PursueEnemy* PursueEnemy::Instance()
+TrainingDummyPursueEnemy* TrainingDummyPursueEnemy::Instance()
 {
-	static PursueEnemy instance;
+	static TrainingDummyPursueEnemy instance;
 	return &instance;
 }
 
-void PursueEnemy::enter(TrainingDummy* t)
+void TrainingDummyPursueEnemy::enter(TrainingDummy* t)
 {
 
 }
 
-void PursueEnemy::execute(TrainingDummy* t)
+void TrainingDummyPursueEnemy::execute(TrainingDummy* t)
 {
 	int en_id = t->getThreatId();
 	Vector2 en_pos = t->getWorld()->getUnit(en_id)->getWorldCoords();
@@ -73,7 +73,7 @@ void PursueEnemy::execute(TrainingDummy* t)
 	t->setRotation(angle);
 }
 
-void PursueEnemy::exit(TrainingDummy* t)
+void TrainingDummyPursueEnemy::exit(TrainingDummy* t)
 {
 
 }

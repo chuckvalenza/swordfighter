@@ -19,13 +19,17 @@ class TrainingDummy : public AI {
 		UnitStateMachine<TrainingDummy>* state_machine;
 	public:
 		TrainingDummy();
+
+		UnitStateMachine<TrainingDummy>* getSM();
+
+		// inherited functions
 		void init();
 		spAttack attack(float);
 		void move(float);
+		void animStand();
+		void animMove();
 		void stopAttack();
 		float getMoveMultiplier();
-		float getCBounds();
-		UnitStateMachine<TrainingDummy>* getSM();
 		void redraw();
 		void update(const UpdateState&);
 };

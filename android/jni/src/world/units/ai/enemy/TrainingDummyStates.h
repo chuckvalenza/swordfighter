@@ -14,23 +14,23 @@ using namespace oxygine;
 
 class TrainingDummy;
 
-/*================================= Patrol =================================*/
-class Patrol : public UnitState<TrainingDummy> {
+/*================================= TrainingDummyPatrol =================================*/
+class TrainingDummyPatrol : public UnitState<TrainingDummy> {
 	private:
-		Patrol();
+		TrainingDummyPatrol();
 	public:
-		static Patrol* Instance();
+		static TrainingDummyPatrol* Instance();
 		void enter(TrainingDummy*);
 		void execute(TrainingDummy*);
 		void exit(TrainingDummy*);
 };
 
-/*=============================== PursueEnemy ==============================*/
-class PursueEnemy : public UnitState<TrainingDummy> {
+/*=============================== TrainingDummyPursueEnemy ==============================*/
+class TrainingDummyPursueEnemy : public UnitState<TrainingDummy> {
 	private:
-		PursueEnemy();
+		TrainingDummyPursueEnemy();
 	public:
-		static PursueEnemy* Instance();
+		static TrainingDummyPursueEnemy* Instance();
 		void enter(TrainingDummy*);
 		void execute(TrainingDummy*);
 		void exit(TrainingDummy*);
