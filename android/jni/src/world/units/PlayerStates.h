@@ -36,23 +36,23 @@ class PlayerMove : public UnitState<Player> {
 		void exit(Player*);
 };
 
-/*=============================== PlayerMeleeAttack ==============================*/
-class PlayerMeleeAttack : public UnitState<Player> {
-	private:
-		PlayerMeleeAttack();
-	public:
-		static PlayerMeleeAttack* Instance();
-		void enter(Player*);
-		void execute(Player*);
-		void exit(Player*);
-};
-
 /*=============================== PlayerPassive ==============================*/
 class PlayerPassive : public UnitState<Player> {
 	private:
 		PlayerPassive();
 	public:
 		static PlayerPassive* Instance();
+		void enter(Player*);
+		void execute(Player*);
+		void exit(Player*);
+};
+
+/*=============================== PlayerMeleeAttack ==============================*/
+class PlayerMeleeAttack : public UnitState<Player> {
+	private:
+		PlayerMeleeAttack();
+	public:
+		static PlayerMeleeAttack* Instance();
 		void enter(Player*);
 		void execute(Player*);
 		void exit(Player*);

@@ -36,11 +36,12 @@ void Unit::unsetMoved()
 
 bool Unit::hasAttacked()
 {
-	if (atk_state == ATTACKING) {
-		return true;
-	}
+	return (atk_state == Unit::AttackState::IS_ATTACKING);
+}
 
-	return false;
+bool Unit::atkAnimRunning()
+{
+	return atk_anim_running;
 }
 
 float Unit::takeDamage(float damage, spAttack en_atk)

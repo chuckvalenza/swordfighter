@@ -25,13 +25,20 @@ class Unit : public Rigid {
 		float health;
 		float prev_health;
 		bool moved;
-		bool attacked;
-		std::chrono::milliseconds atk_anim_timer;
+		bool atk_anim_running;
+		std::chrono::milliseconds atk_anim_start_time;
+		int atk_anim_duration;
+
+		// it's time to overhaul how you are executing attacks. This temporary version
+		// is just causing too much headache to implement correctly and was knowingly
+		// implemented poorly
 
 		enum AttackState {
-			NOT_ATTACKED,
-			ATTACKING,
-			ATTACKED
+			NOT_ATTACKING,
+			ANIM_STARTED,
+			ANIM_RUNNING,
+			IS_ATTACKING,
+			HAS_ATTACKED
 		};
 
 		AttackState atk_state;
@@ -56,6 +63,8 @@ class Unit : public Rigid {
 		virtual void init();
 		virtual spAttack attack(float) = 0;
 		virtual void move(float) = 0;
+		//virtual void animMeleeAttack() = 0;
+		//virtual void animRangedAttack() = 0;
 		virtual void animStand() = 0;
 		virtual void animMove() = 0;
 		virtual void stopAttack() = 0;
@@ -67,6 +76,7 @@ class Unit : public Rigid {
 		void unsetMoved();
 		bool hasMoved();
 		bool hasAttacked();
+		bool atkAnimRunning();
 		bool healthLost();
 		float takeDamage(float, spAttack);
 		float getHealth();

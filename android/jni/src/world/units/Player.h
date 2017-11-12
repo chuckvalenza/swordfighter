@@ -33,8 +33,6 @@ class Player : public Unit {
 		UnitStateMachine<Player>* rh_state;
 		UnitStateMachine<Player>* lh_state;
 	public:
-		bool moving;
-
 		Wieldable::ItemType atk_type;
 
 		Player();
@@ -49,10 +47,14 @@ class Player : public Unit {
 		void setLHItem(spWieldable);
 		void setPants(spWearable);
 
+		spWieldable getRHItem();
+		spWieldable getLHItem();
+
 		UnitStateMachine<Player>* getMoveState();
 		UnitStateMachine<Player>* getRHState();
 		UnitStateMachine<Player>* getLHState();
 
+		long getAnimUseRHTimer();
 		// inherited functions
 		void init();
 		spAttack attack(float);
