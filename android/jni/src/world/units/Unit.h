@@ -29,10 +29,6 @@ class Unit : public Rigid {
 		std::chrono::milliseconds atk_anim_start_time;
 		int atk_anim_duration;
 
-		// it's time to overhaul how you are executing attacks. This temporary version
-		// is just causing too much headache to implement correctly and was knowingly
-		// implemented poorly
-
 		enum AttackState {
 			NOT_ATTACKING,
 			ANIM_STARTED,
