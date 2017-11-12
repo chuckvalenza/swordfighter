@@ -128,15 +128,14 @@ spAttack Player::attack(float angle)
 	milliseconds time_since_start = cur_time - atk_anim_start_time;
 
 	// conditions to start animation:
-	//			have not attacked yet -OR- last time we attacked was over animation time
+	//			have not attacked yet
 	//			atk_anim_running is false
 	// actions:
 	// 			1. atk_create_state -> not attacking
 	// 			2. atk_anim_start_time (re)starts
 	//			3. anim_running -> true
-	if ((atk_state == Unit::AttackState::NOT_ATTACKING
-		||  time_since_start > a_time) && !atk_anim_running) {
-		atk_state = Unit::AttackState::NOT_ATTACKING;
+	if (atk_state == Unit::AttackState::NOT_ATTACKING && !atk_anim_running) {
+		atk_state = Unit::AttackState::ANIM_STARTED;
 		atk_anim_start_time = duration_cast<milliseconds>
 			(system_clock::now().time_since_epoch());
 		atk_anim_running = true;
@@ -147,11 +146,11 @@ spAttack Player::attack(float angle)
 	// 			atk_anim_running == true
 	} else if (time_since_start > a_time / 2 && atk_anim_running) {
 		// conditions to create attack:
-		//			atk_state == NOT
+		//			atk_state == ANIM_STARTED
 		// actions:
 		// 			1. create attack object
 		// 			2. atk_create_state -> is attacking
-		if (atk_state == Unit::AttackState::NOT_ATTACKING) {
+		if (atk_state == Unit::AttackState::ANIM_RUNNING) {
 			atk = new Attack();
 			float x_offset = (atk_radius + rh_item->getSize()) * cos(angle);
 			float y_offset = (atk_radius + rh_item->getSize()) * sin(angle);
@@ -161,7 +160,7 @@ spAttack Player::attack(float angle)
 			atk_state = Unit::AttackState::IS_ATTACKING;
 
 		// conditions to remove attack:
-		//			atk_state == IS
+		//			atk_state == IS_ATTACKING
 		// actions:
 		// 			1. atk_create_state -> has attacking
 		//			2. (deleting attack will be taken care of by world)
@@ -170,7 +169,7 @@ spAttack Player::attack(float angle)
 
 		// conditions to stop animation:
 		// 			time since start is greater than 300ms
-		//			atk_state == HAS
+		//			atk_state == HAS_ATTACKED
 		// actions:
 		// 			1. atk_anim_running -> false
 		//			2. atk_state -> NOT
@@ -187,6 +186,7 @@ void Player::stopAttack()
 {
 	atk_type = Wieldable::ItemType::NONE;
 	atk_state = Unit::AttackState::NOT_ATTACKING;
+	atk_anim_running = false;
 	move(view->getRotation());
 }
 
@@ -218,8 +218,8 @@ void Player::animUseRH()
 			(system_clock::now().time_since_epoch());
 	milliseconds time_since_start = cur_time - atk_anim_start_time;
 
-	if ((atk_state == Unit::AttackState::NOT_ATTACKING
-		||  time_since_start > a_time) && !atk_anim_running) {
+	if (atk_state == Unit::AttackState::ANIM_STARTED && atk_anim_running) {
+		atk_state = Unit::AttackState::ANIM_RUNNING;
 		if (atk_type == Wieldable::ItemType::SLASH) {
 			std::string chestpiece_str = chestpiece->equippedStr();
 			torso->addTween(TweenAnim(res::r.getResAnim(chestpiece_str), 5, 8), atk_anim_duration);
