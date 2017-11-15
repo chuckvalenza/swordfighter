@@ -36,7 +36,9 @@ spAttack TrainingDummy::attack(float angle)
 
 void TrainingDummy::move(float angle)
 {
+	moved = true;
 
+	view->setRotation(angle + M_PI);
 }
 
 void TrainingDummy::animStand()

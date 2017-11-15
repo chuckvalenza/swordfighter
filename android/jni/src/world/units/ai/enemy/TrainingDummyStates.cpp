@@ -31,6 +31,37 @@ void TrainingDummyPatrol::execute(TrainingDummy* t)
 	if (t->healthLost()) {
 		t->getSM()->changeState(TrainingDummyPursueEnemy::Instance());
 	}
+
+	static int counter = 0;
+	Vector2 dir;
+	if(counter < 500)
+		dir.x = 1;
+	if(counter > 500)
+		dir.x = -1;
+
+	dir.y = 0;
+
+	float angle = atan2f(dir.y, dir.x);
+
+	if (angle >= -3 && angle <= 1.5) {
+		angle += M_PI / 2;
+	} else {
+		angle -= 1.5f * M_PI;
+	}
+
+	t->move(angle);
+
+	float penalty = t->getMoveMultiplier();// * world->getMoveMultiplier(pos);
+
+	Vector2 pos;
+	pos = t->getPosition();
+	pos += dir * 2 * penalty;
+	if(counter > 1000)
+		counter = 0;
+
+	t->setNextPosition(pos);
+
+	counter++;
 }
 
 void TrainingDummyPatrol::exit(TrainingDummy* t)

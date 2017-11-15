@@ -70,6 +70,12 @@ void Game::redraw()
 	player->redraw();
 }
 
+#include <sstream>
+std::string to_string(float number){
+    std::ostringstream buff;
+    buff<<number;
+    return buff.str();
+}
 void Game::doUpdate(const UpdateState& us)
 {
 	ui->update(us);
@@ -84,9 +90,7 @@ void Game::doUpdate(const UpdateState& us)
 	world->clearMoved();
 
 	player->update(us);
-	if (player->hasMoved()) {
-		physics->collisionDetection(player);
-	}
+	physics->collisionDetection(player);
 	if (player->hasAttacked()) {
 		physics->attackDetection(player->getAttack());
 	}

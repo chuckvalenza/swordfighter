@@ -33,6 +33,7 @@ void World::setScreen(Screen* s)
 void World::setPlayer(spUnit player)
 {
 	units.insert(std::pair<int, spUnit>(0, player));
+	rigid_objs.insert(std::pair<int, spUnit>(0, player));
 }
 
 /**
@@ -210,6 +211,11 @@ void World::redraw()
 {
 	if (getPosition() != next_pos) {
 		setPosition(next_pos);
+	}
+
+	for (std::map<int, spRigid>::iterator i = rigid_objs.begin();
+		i != rigid_objs.end(); ++i) {
+		i->second->redraw();
 	}
 }
 
