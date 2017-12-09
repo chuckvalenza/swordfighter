@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Bundle;
+import android.view.WindowManager;
 
 public class SplashActivity extends Activity {
 	private final int TIME_DELAY_MS = 3000;
@@ -22,6 +23,7 @@ public class SplashActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash);
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 		new Handler().postDelayed(mRunnable, TIME_DELAY_MS);
 	}

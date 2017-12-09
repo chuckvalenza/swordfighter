@@ -8,6 +8,7 @@ import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.WindowManager;
 
 import com.chuckvalenza.SwordFighter.activityStarter.ActivityStarterPackage;
 import com.facebook.react.ReactInstanceManager;
@@ -24,6 +25,7 @@ public class MenuActivity extends Activity implements DefaultHardwareBackBtnHand
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 		mReactRootView = new ReactRootView(this);
 		mReactInstanceManager = ReactInstanceManager.builder()
