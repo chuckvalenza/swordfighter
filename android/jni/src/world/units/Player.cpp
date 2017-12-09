@@ -118,7 +118,7 @@ void Player::setPants(spWearable new_item)
 
 spAttack Player::attack(float angle)
 {
-	// determine what type of attack will be down based on what we are wielding
+	// determine what type of attack will be done based on what we are wielding
 	if (rh_item->item_type == Wieldable::ItemType::SLASH) {
 		atk_type = Wieldable::ItemType::SLASH;
 	} else if (rh_item->item_type == Wieldable::ItemType::PUNCH) {
