@@ -216,7 +216,8 @@ void Player::move(float angle)
 		head->setRotation(angle);
 		torso->setRotation(angle);
 		right_hand->setRotation(angle);
-		left_hand->setRotation(angle);
+		//left_hand->setRotation(angle);
+		//legs->setRotation(angle);
 	}
 }
 
