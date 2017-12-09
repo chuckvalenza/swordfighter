@@ -13,11 +13,14 @@
 using namespace oxygine;
 
 class TrainingDummy;
+class World;
 
 /*================================= TrainingDummyPatrol =================================*/
 class TrainingDummyPatrol : public UnitState<TrainingDummy> {
 	private:
 		TrainingDummyPatrol();
+
+		World* world;
 	public:
 		static TrainingDummyPatrol* Instance();
 		void enter(TrainingDummy*);

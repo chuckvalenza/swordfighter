@@ -4,6 +4,7 @@
  * Description: Class for the player character
  */
 
+#include "world/World.h"
 #include "world/units/Player.h"
 #include <math.h>
 
@@ -263,8 +264,10 @@ void Player::animUseLH()
 
 float Player::getMoveMultiplier()
 {
+	float mult = 1.0f;
 	if(atk_type == Wieldable::ItemType::NONE) {
-		return 1.0f;
+		mult *= world->getMoveMultiplier(world_coords);
+		return mult;
 	}
 
 	return ATK_PENALTY;

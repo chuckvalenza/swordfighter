@@ -16,11 +16,11 @@ DECLARE_SMART(TrainingDummy, spTrainingDummy);
 
 class TrainingDummy : public AI {
 	private:
-		UnitStateMachine<TrainingDummy>* state_machine;
+		UnitStateMachine<TrainingDummy>* move_state;
 	public:
 		TrainingDummy();
 
-		UnitStateMachine<TrainingDummy>* getSM();
+		UnitStateMachine<TrainingDummy>* getMoveState();
 
 		// inherited functions
 		void init();

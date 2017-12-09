@@ -29,7 +29,7 @@ void TrainingDummyPatrol::enter(TrainingDummy* t)
 void TrainingDummyPatrol::execute(TrainingDummy* t)
 {
 	if (t->healthLost()) {
-		t->getSM()->changeState(TrainingDummyPursueEnemy::Instance());
+		t->getMoveState()->changeState(TrainingDummyPursueEnemy::Instance());
 	}
 
 	static int counter = 0;
@@ -51,7 +51,7 @@ void TrainingDummyPatrol::execute(TrainingDummy* t)
 
 	t->move(angle);
 
-	float penalty = t->getMoveMultiplier();// * world->getMoveMultiplier(pos);
+	float penalty = t->getMoveMultiplier() * world->getMoveMultiplier(t->getWorldCoords());
 
 	Vector2 pos;
 	pos = t->getPosition();

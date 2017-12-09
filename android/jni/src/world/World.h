@@ -56,6 +56,7 @@ class World : public DrawableObj {
 		std::map<int, spUnit> getLocalEnemies(spWorldObj obj);
 		std::map<int, spRigid> getCollisionSet(spRigid obj);
 		std::map<int, spAttack> getLocalAttacks(spWorldObj obj);
+		float getMoveMultiplier(Vector2);
 		void clearMoved();
 		void clearAttacks();
 		void redraw();

@@ -2,14 +2,15 @@
  * TrainingDummy.cpp
  */
 
+#include "world/World.h"
 #include "world/units/ai/enemy/TrainingDummy.h"
 #define COLLISION_BOUNDS 70.0f
 
 TrainingDummy::TrainingDummy()
 {
 	//set up state machine
-	state_machine = new UnitStateMachine<TrainingDummy>(this);
-	state_machine->setCurrentUnitState(TrainingDummyPatrol::Instance());
+	move_state = new UnitStateMachine<TrainingDummy>(this);
+	move_state->setCurrentUnitState(TrainingDummyPatrol::Instance());
 }
 
 void TrainingDummy::init()
@@ -61,9 +62,9 @@ float TrainingDummy::getMoveMultiplier()
 	return 1;
 }
 
-UnitStateMachine<TrainingDummy>* TrainingDummy::getSM()
+UnitStateMachine<TrainingDummy>* TrainingDummy::getMoveState()
 {
-	return state_machine;
+	return move_state;
 }
 
 void TrainingDummy::redraw()
@@ -75,5 +76,5 @@ void TrainingDummy::redraw()
 
 void TrainingDummy::update(const UpdateState& us)
 {
-	state_machine->update();
+	move_state->update();
 }

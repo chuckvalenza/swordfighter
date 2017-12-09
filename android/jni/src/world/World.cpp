@@ -207,6 +207,16 @@ std::map<int, spAttack> World::getLocalAttacks(spWorldObj obj)
 	return atk_set;
 }
 
+float World::getMoveMultiplier(Vector2 pos)
+{
+	int x = pos.x / chunk_size;
+	int y = pos.y / chunk_size;
+	// need to get based off of tile; suggest subtracting x * TILE_SIZE then
+	// figuring which tile you land in in a same wat inside each chunk
+	//return  world_chunks[x][y]->getTileMultiplier();
+	return 1.0f;
+}
+
 void World::redraw()
 {
 	if (getPosition() != next_pos) {
