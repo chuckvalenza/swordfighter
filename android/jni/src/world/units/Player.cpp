@@ -40,6 +40,8 @@ void Player::init()
 	torso->attachTo(view);
 	setChestpiece(chestpiece);
 
+	view->setSize(torso->getSize());
+
 	rh_item = new Fist;
 	right_hand = new Sprite;
 	right_hand->attachTo(view);
@@ -49,8 +51,6 @@ void Player::init()
 	head = new Sprite;
 	head->attachTo(view);
 	setHeadgear(headgear);
-
-	view->setSize(torso->getSize());
 
 	atk_type = Wieldable::ItemType::NONE;
 	atk_anim_start_time = std::chrono::milliseconds(-100000);
@@ -67,6 +67,9 @@ void Player::setHeadgear(spWearable new_item)
 	std::string str = headgear->equippedStr();
 	head->removeTweens();
 	head->addTween(TweenAnim(res::r.getResAnim(str), 0, 0), 1);
+	head->setAnchor(0.5f, 0.62f);
+	head->setX(view->getWidth() / 2);
+	head->setY(view->getHeight() * .62);
 }
 
 void Player::setChestpiece(spWearable new_item)
@@ -75,6 +78,9 @@ void Player::setChestpiece(spWearable new_item)
 	std::string str = chestpiece->equippedStr();
 	torso->removeTweens();
 	torso->addTween(TweenAnim(res::r.getResAnim(str), 0, 0), 1);
+	torso->setAnchor(0.5f, 0.62f);
+	torso->setX(torso->getWidth() / 2);
+	torso->setY(torso->getHeight() * .62);
 }
 
 void Player::setRHItem(spWieldable new_item)
@@ -83,6 +89,9 @@ void Player::setRHItem(spWieldable new_item)
 	std::string str = rh_item->equippedStr() + "-rh";
 	right_hand->removeTweens();
 	right_hand->addTween(TweenAnim(res::r.getResAnim(str), 0, 0), 1);
+	right_hand->setAnchor(0.5f, 0.62f);
+	right_hand->setX(view->getWidth() / 2);
+	right_hand->setY(view->getHeight() * .62);
 }
 
 void Player::setLHItem(spWieldable new_item)
@@ -91,6 +100,9 @@ void Player::setLHItem(spWieldable new_item)
 	std::string str = lh_item->equippedStr() + "-lh";
 	left_hand->removeTweens();
 	left_hand->addTween(TweenAnim(res::r.getResAnim(str), 0, 0), 1);
+	left_hand->setAnchor(0.5f, 0.62f);
+	left_hand->setX(view->getWidth() / 2);
+	left_hand->setY(view->getHeight() * .62);
 }
 
 void Player::setPants(spWearable new_item)
@@ -99,6 +111,9 @@ void Player::setPants(spWearable new_item)
 	std::string str = pants->equippedStr();
 	legs->removeTweens();
 	legs->addTween(TweenAnim(res::r.getResAnim(str), 0, 0), 1);
+	legs->setAnchor(0.5f, 0.62f);
+	legs->setX(view->getWidth() / 2);
+	legs->setY(view->getHeight() * .62);
 }
 
 spAttack Player::attack(float angle)
@@ -112,7 +127,9 @@ spAttack Player::attack(float angle)
 
 	// rotate character in direction of attack, then change angle for other
 	// calculations
-	view->setRotation(angle);
+	head->setRotation(angle);
+	torso->setRotation(angle);
+	right_hand->setRotation(angle);
 	angle -= M_PI / 2;
 
 	// set up time (ms) variables:
@@ -195,7 +212,10 @@ void Player::move(float angle)
 	moved = true;
 
 	if (atk_type == Wieldable::ItemType::NONE) {
-		view->setRotation(angle);
+		head->setRotation(angle);
+		torso->setRotation(angle);
+		right_hand->setRotation(angle);
+		left_hand->setRotation(angle);
 	}
 }
 
