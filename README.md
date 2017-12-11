@@ -33,8 +33,10 @@ For the most up-to-date version, checkout the 'dev' branch.
 
 ### v0.03 - Basic enemy AI
 
-- [ ] Enemies move in 1 direction and then reverse direction (back-and-forth patrolling with nothing else)
+- [x] Enemies move in 1 direction and then reverse direction (back-and-forth patrolling with nothing else)
+- [ ] Enemies smoothly patrol an autonomously chosen, random path
 - [ ] Enemies move toward player when provoked
+- [ ] Enemies pathfinding to point (obstacle avoidance)
 - [ ] Enemies attack player when close enough
 - [ ] Enemies can sense player without provocation if player is close enough and they are looking in the player's direction
 - [ ] Enemies can sense player without provocation if player is close enough and moving quickly enough (they hear the player)
