@@ -4,7 +4,8 @@
  * Description: A temporary waypoint to control randomized movement jitter
  */
 
-#include "PatrolWaypoint.h"
+#include "world/units/ai/PatrolWaypoint.h"
+#include "core_components/res.h"
 
 PatrolWaypoint::PatrolWaypoint()
 {

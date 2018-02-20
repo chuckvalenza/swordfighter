@@ -6,6 +6,7 @@
 
 #include "world/World.h"
 #include "world/units/Player.h"
+#include "core_components/res.h"
 #include <math.h>
 
 #define COLLISION_BOUNDS 57.5f
