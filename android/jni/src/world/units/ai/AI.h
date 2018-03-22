@@ -21,6 +21,7 @@ class AI : public Unit {
 	public:
 		AI();
 
+		void moveToWaypoint(Vector2);
 		void addKnownUnit(spUnit);
 		void addFriendlyUnit(spUnit);
 		void addEnemyUnit(spUnit);
